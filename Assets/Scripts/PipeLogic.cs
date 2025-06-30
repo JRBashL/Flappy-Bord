@@ -81,7 +81,7 @@ public class PipeSpawnLogic : MonoBehaviour
             // Debug.Log("The field _pipeTypeArray is " + _pipeTypeArray[0] + _pipeTypeArray[1] + _pipeTypeArray[2]);
 
             // FOR DEBUGGING
-            _pipeTypeArray = new int[]{2, 2, 2};
+            //_pipeTypeArray = new int[]{2, 2, 2};
 
             // Spawns the pipes in the lane
             PipeSpawn(yOffsetArray);
