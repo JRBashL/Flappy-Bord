@@ -13,7 +13,7 @@ public class PipeScript : MonoBehaviour
 
     // Boolean listens to GameEvent
     [SerializeField]
-    private static bool _isboostedState = false;
+    public static bool _isboostedState = false;
     private Rigidbody _rb;
 
 
@@ -76,7 +76,7 @@ public class PipeScript : MonoBehaviour
     {
         Debug.Log("PipeScript BooleanChangerRegularSpeed Activated");
         _isboostedState = false;
-        Debug.Log("_isBoostedState = " + _isboostedState);
+        Debug.Log("PipePrefabScript _isBoostedState = " + _isboostedState);
     }
 
     public void BooleanChangerBoostedSpeed()
