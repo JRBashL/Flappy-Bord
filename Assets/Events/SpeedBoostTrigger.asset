@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f7790848ff6e3409fab36b446ee44c, type: 3}
+  m_Name: SpeedBoostTrigger
+  m_EditorClassIdentifier: 
+  _regularPipeSpeed: 0
+  _boostPipeSpeedMultiplier: 0
+  _boostDuration: 0
+  _decelDuration: 0
+  _increasingSpeedPerSec: 0

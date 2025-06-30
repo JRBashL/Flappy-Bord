@@ -22,6 +22,10 @@ public class GapColliderManager : MonoBehaviour
     //bool to stop multiple coroutines from happening at the same time
     private static bool _isBoostEventHappening;
 
+    // Declare enums and coroutines
+    private enum SpeedState { Regular, Boosted, Decel, Stop };
+    private SpeedState _currentSpeedState;
+    private Coroutine _currentStateCoroutine;
 
     // Initialize the fields
     void Awake()
@@ -57,23 +61,59 @@ public class GapColliderManager : MonoBehaviour
     private IEnumerator SpeedBoost()
     {
         Debug.Log("Boost Collider triggered SpeedBoost Game Event");
+        _currentSpeedState = SpeedState.Boosted;
         _speedBoostEvent.TriggerEvent();
-        yield return new WaitForSeconds(5f);
-        Debug.Log("After " + _speedBoostDuration + " seconds, Boost Collider ends SpeedBoost Game Event");
 
-        StartCoroutine(Decel());
+        yield return new WaitForSeconds(_speedBoostDuration);
+        Debug.Log("After " + _speedBoostDuration + " seconds, Boost Collider ends SpeedBoost Game Event");
+       
+        _currentStateCoroutine = StartCoroutine(Decel());
     }
 
     private IEnumerator Decel()
     {
         Debug.Log("Boost Collider triggered Decel Game Event");
+        _currentSpeedState = SpeedState.Decel;
         _decelEvent.TriggerEvent();
+
         yield return new WaitForSeconds(_decelDuration);
         Debug.Log("After" + _decelDuration + "seconds, Boost Collider end Decel Game Event");
 
-        _regularSpeedEvent.TriggerEvent();
-        _isBoostEventHappening = false;
+        _currentStateCoroutine = StartCoroutine(RegularSpeed());
+    }
 
+    private IEnumerator RegularSpeed()
+    {
+        Debug.Log("Boost Collider triggered Regular Speed Game Event");
+        _currentSpeedState = SpeedState.Regular;
+        _regularSpeedEvent.TriggerEvent();
+        
+        _isBoostEventHappening = false; // Reset the boost event flag
+
+        // Reset the coroutine reference
+        _currentStateCoroutine = null;
+
+        yield return null;
+    }
+
+    public void StartSpeedBoost()
+    {
+        if (!_isBoostEventHappening)
+        {
+            _isBoostEventHappening = true;
+
+            // Stop any currently running coroutine before starting a new one
+            if (_currentStateCoroutine != null)
+            {
+                StopCoroutine(_currentStateCoroutine);
+            }
+
+            _currentStateCoroutine = StartCoroutine(SpeedBoost());
+        }
+        else
+        {
+            Debug.Log("Boost Collider: Boost Event already happening.");
+        }
     }
 
 }

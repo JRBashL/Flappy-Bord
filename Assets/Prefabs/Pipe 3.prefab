@@ -894,12 +894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c64afa669da6342befbd16eaef3371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pipeSpeedSO: {fileID: 11400000, guid: f6646ccfa39902b4f9248aadd4581c3e, type: 2}
-  _speedBoostDuration: 5
-  _decelDuration: 2
-  _speedBoostEvent: {fileID: 11400000, guid: 2d8823da1618eaa4dae80bdd0a477f65, type: 2}
-  _regularSpeedEvent: {fileID: 11400000, guid: 2649235963bb27f49b7979d922a897d3, type: 2}
-  _decelEvent: {fileID: 11400000, guid: b93f9d80dd40f834695225e14f7ec6fb, type: 2}
+  _speedBooostTrigger: {fileID: 11400000, guid: 93583fd9e28296146bafdec27242553b, type: 2}
 --- !u!1 &8610987529684302049
 GameObject:
   m_ObjectHideFlags: 0
