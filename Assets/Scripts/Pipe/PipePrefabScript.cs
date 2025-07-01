@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class PipeScript : MonoBehaviour
+public class PipePrefabScript : MonoBehaviour
 {
 
     //PipeSpeed is going to be shared to all instances of the pipe in the game therefore it is public static
@@ -49,13 +49,21 @@ public class PipeScript : MonoBehaviour
             // Deleted method when changing the PipeScript speed into a public static property
             _pipeGameObject.SetActive(false);
         }
-
+/*
         else if (other.CompareTag("Bord") && _isboostedState)
         {
             Debug.Log("EnumHitterandDisable Activated");
             Debug.Log("_isBoostedState = " + _isboostedState);
             StartCoroutine(HitterandDisabler());
         }
+
+        else if (other.CompareTag("Bord") && _isboostedState)
+        {
+            Debug.Log("PipeScript HitterandDisabler Activated");
+            Debug.Log("_isBoostedState = " + _isboostedState);
+            StartCoroutine(HitterandDisabler());
+        }
+*/
     }
 
 

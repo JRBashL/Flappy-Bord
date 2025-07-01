@@ -3,7 +3,7 @@ using UnityEngine;
 public class SubPipeScript : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _pipe1BottomBase, _pipe1BottomBroken, _pipe1TopBroken, _pipe1TopBase, _parentPipe;
+    private GameObject _pipe1broken, _parentPipe;
     private Vector3 _currentPosVector3;
 
 
@@ -27,10 +27,11 @@ public class SubPipeScript : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
 
-        if (other.CompareTag("Bord") && PipeScript._isboostedState)
+        if (other.CompareTag("Bord") && PipePrefabScript._isboostedState)
         {
             _currentPosVector3 = _parentPipe.transform.position;
-            Instantiate(gameObject, _currentPosVector3, Quaternion.identity);
+            Instantiate(_pipe1broken, _currentPosVector3, Quaternion.identity);
+            _parentPipe.SetActive(false); // Disable the parent pipe to prevent further collisions
         }
     }
 
