@@ -11,62 +11,61 @@ public class PipeSpeedLogic : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Place PipeSpeedScriptableObject here that contains the pipe speeds. Use it to configure regular and boosted speeds.")]
-    private PipeScriptableObject _pipeSpeedSO;
+    private PipeScriptableObject _pipeSpeedScriptableObject;
 
     // Declare pipe speeds and durations
-    private float _regularPipeSpeed, _boostPipeSpeedMultiplier, _boostDuration, _decelDuration, _currentPipeSpeed, _increaseSpeedPerSec;
+    private float _regPipeSpeed, _pipeSpeedBoostMultiplier, _durationBoost, _durationDecel, _currentPipeSpeed, _increaseSpeedPerSecond;
 
     // Declare fallback speeds
-    private const float _defaultPipeSpeed = -15f;
-    private const float _defaultBoostPipeSpeedMultiplier = 3;
-    private const float _defaultboostDuration = 5f;
-    private const float _defaultDecelDuration = 2f;
-    private const float _defaultIncreaseSpeedPerSec = 0.05f;
+    private const float _pipeSpeedDefault = -15f;
+    private const float _pipeSpeedBoostMultiplierDefault = 3;
+    private const float _duartionBoostDefault = 5f;
+    private const float _durationDecelDefault = 2f;
+    private const float _defaultIncreaseSpeedPerSecond = 0.05f;
 
     // Declare Easing Functions
-    private EaseFunc.Ease _easeEnum;
-    private EaseFunc.Function _easeFunction;
+    private EaseFunc.Ease _enumEase;
+    private EaseFunc.Function _functionEase;
 
     // Declare enum for state and couroutines
     private enum Speedstate { _enumRegularPipeSpeed, _enumBoostedPipeSpeed, _enumDecel, _enumStopSpeed };
-    private Speedstate _currentSpeedState;
-    private Coroutine _currentStateCoroutine;
+    private Speedstate _activeSpeedState;
+    private Coroutine _stateCurrentCoroutine;
 
     void Awake()
     {
-        _regularPipeSpeed = _pipeSpeedSO.RegularPipeSpeed;
-        _currentSpeedState = Speedstate._enumRegularPipeSpeed;
+        _activeSpeedState = Speedstate._enumRegularPipeSpeed;
 
         // If statement to initialze the pipe speed fields. Has a fallback in case the scriptable object to be assigned in the inspector
         // isn't placed.
-        if (_pipeSpeedSO == null)
+        if (_pipeSpeedScriptableObject == null)
         {
             Debug.LogWarning("PipeSpeedScriptableObject not assigned in inspector for PipeSpeedLogic!");
             Debug.LogWarning("Setting fallback values.");
-            _regularPipeSpeed = _defaultPipeSpeed;
-            _boostPipeSpeedMultiplier = _defaultBoostPipeSpeedMultiplier;
-            _boostDuration = _defaultboostDuration;
-            _decelDuration = _defaultDecelDuration;
-            _increaseSpeedPerSec = _defaultIncreaseSpeedPerSec;
+            _regPipeSpeed = _pipeSpeedDefault;
+            _pipeSpeedBoostMultiplier = _pipeSpeedBoostMultiplierDefault;
+            _durationBoost = _duartionBoostDefault;
+            _durationDecel = _durationDecelDefault;
+            _increaseSpeedPerSecond = _defaultIncreaseSpeedPerSecond;
         }
         else
         {
-            _regularPipeSpeed = _pipeSpeedSO.RegularPipeSpeed;
-            _boostPipeSpeedMultiplier = _pipeSpeedSO.BoostPipeSpeedMultiplier;
-            _boostDuration = _pipeSpeedSO.BoostDuration;
-            _decelDuration = _pipeSpeedSO.DecelDuration;
-            _increaseSpeedPerSec = _pipeSpeedSO.IncreasingSpeedPerSec;
+            _regPipeSpeed = _pipeSpeedScriptableObject.RegularPipeSpeed;
+            _pipeSpeedBoostMultiplier = _pipeSpeedScriptableObject.BoostPipeSpeedMultiplier;
+            _durationBoost = _pipeSpeedScriptableObject.BoostDuration;
+            _durationDecel = _pipeSpeedScriptableObject.DecelDuration;
+            _increaseSpeedPerSecond = _pipeSpeedScriptableObject.IncreasingSpeedPerSec;
         }
 
-        _easeEnum = EaseFunc.Ease.EaseOutQuint;
-        _easeFunction = EaseFunc.GetEasingFunction(_easeEnum);
+        _enumEase = EaseFunc.Ease.EaseOutQuint;
+        _functionEase = EaseFunc.GetEasingFunction(_enumEase);
 
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StateChangerRegularSpeed();
+        StateRegularSpeedChanger();
     }
 
     // Update is called once per frame
@@ -78,115 +77,115 @@ public class PipeSpeedLogic : MonoBehaviour
 
 
     // Coroutine state on regular gameplay
-    private IEnumerator RegularSpeedState()
+    private IEnumerator StateRegularSpeed()
     {
         Debug.Log("PipeSpeedLogic Regular Speed State Activated.");
-        _currentSpeedState = Speedstate._enumRegularPipeSpeed;
+        _activeSpeedState = Speedstate._enumRegularPipeSpeed;
 
-        PipeScript.PipeSpeed = _regularPipeSpeed;
+        PipePrefabScript.PipeSpeed = _regPipeSpeed;
 
         // Speed constantly increases
         do
         {
-            _regularPipeSpeed += _increaseSpeedPerSec;
-            PipeScript.PipeSpeed = _regularPipeSpeed;
+            _regPipeSpeed += _increaseSpeedPerSecond;
+            PipePrefabScript.PipeSpeed = _regPipeSpeed;
             yield return new WaitForSeconds(5f);
-            // Debug.Log("The PipeSpeed is now " + PipeScript.PipeSpeed);
+            // Debug.Log("The PipeSpeed is now " + PipePrefabScript.PipeSpeed);
         }
-        while (_currentSpeedState == Speedstate._enumRegularPipeSpeed);
+        while (_activeSpeedState == Speedstate._enumRegularPipeSpeed);
     }
 
-    private IEnumerator BoostSpeedState()
+    private IEnumerator StateBoostSpeed()
     {
         Debug.Log("PipeSpeedLogic Boosted Speed State Activated");
-        _currentSpeedState = Speedstate._enumBoostedPipeSpeed;
+        _activeSpeedState = Speedstate._enumBoostedPipeSpeed;
 
         // Increase the pipe speed exponentially by 1 percent every frame until a max speed
         do
         {
-            PipeScript.PipeSpeed += PipeScript.PipeSpeed * 0.01f;
-            // Debug.Log("The PipeSpeed is " + PipeScript.PipeSpeed);
+            PipePrefabScript.PipeSpeed += PipePrefabScript.PipeSpeed * 0.01f;
+            // Debug.Log("The PipeSpeed is " + PipePrefabScript.PipeSpeed);
             yield return null;
         }
-        while (PipeScript.PipeSpeed > _regularPipeSpeed * _boostPipeSpeedMultiplier);
+        while (PipePrefabScript.PipeSpeed > _regPipeSpeed * _pipeSpeedBoostMultiplier);
 
         Debug.Log("PipeSpeedLogic Entering max boost speed");
 
         // Sets the pipespeed to the actual value after acceleration
-        PipeScript.PipeSpeed = _regularPipeSpeed * _boostPipeSpeedMultiplier;
+        PipePrefabScript.PipeSpeed = _regPipeSpeed * _pipeSpeedBoostMultiplier;
 
     }
 
-    private IEnumerator DecelSpeedState()
+    private IEnumerator StateDecelSpeed()
     {
         Debug.Log("PipeSpeedLogic Entering decel speed state.");
-        _currentSpeedState = Speedstate._enumDecel;
+        _activeSpeedState = Speedstate._enumDecel;
 
         // Operation below will approximate an exponential decay using 4 time quadrants with 
         // and does it within the decel time duration
-        float maxspeed = _regularPipeSpeed * _boostPipeSpeedMultiplier;
+        float maxspeed = _regPipeSpeed * _pipeSpeedBoostMultiplier;
         float timecounter = 0f;
 
-        // Use EaseFunc Easing functions with normalized time (0 to 1) timecounter/_decelDuration is normalizing it 
-        while (timecounter < _decelDuration)
+        // Use EaseFunc Easing functions with normalized time (0 to 1) timecounter/_durationDecel is normalizing it 
+        while (timecounter < _durationDecel)
         {
             timecounter += Time.deltaTime;
-            float t = Mathf.Clamp01(timecounter / _decelDuration);
-            PipeScript.PipeSpeed = _easeFunction(maxspeed, _regularPipeSpeed, t);
+            float t = Mathf.Clamp01(timecounter / _durationDecel);
+            PipePrefabScript.PipeSpeed = _functionEase(maxspeed, _regPipeSpeed, t);
             yield return null;
         }
 
         //At the end make sure to set the actual speed
-        PipeScript.PipeSpeed = _regularPipeSpeed;
+        PipePrefabScript.PipeSpeed = _regPipeSpeed;
     }
 
-    private IEnumerator StopSpeedState()
+    private IEnumerator StateStopSpeed()
     {
-        PipeScript.PipeSpeed = 0f;
+        PipePrefabScript.PipeSpeed = 0f;
         yield return null;
     }
 
-    public void StateChangerRegularSpeed()
+    public void StateRegularSpeedChanger()
     {
-        if (_currentStateCoroutine != null)
+        if (_stateCurrentCoroutine != null)
         {
-            StopCoroutine(_currentStateCoroutine);
+            StopCoroutine(_stateCurrentCoroutine);
         }
 
-        _currentStateCoroutine = StartCoroutine(RegularSpeedState());
+        _stateCurrentCoroutine = StartCoroutine(StateRegularSpeed());
 
     }
 
     public void StateChangerBoostSpeed()
     {
-        if (_currentStateCoroutine != null)
+        if (_stateCurrentCoroutine != null)
         {
-            StopCoroutine(_currentStateCoroutine);
+            StopCoroutine(_stateCurrentCoroutine);
         }
 
-        _currentStateCoroutine = StartCoroutine(BoostSpeedState());
+        _stateCurrentCoroutine = StartCoroutine(StateBoostSpeed());
     }
 
     public void StateChangerDecel()
     {
 
-        if (_currentStateCoroutine != null)
+        if (_stateCurrentCoroutine != null)
         {
-            StopCoroutine(_currentStateCoroutine);
+            StopCoroutine(_stateCurrentCoroutine);
         }
 
-        _currentStateCoroutine = StartCoroutine(DecelSpeedState());
+        _stateCurrentCoroutine = StartCoroutine(StateDecelSpeed());
     }
     
         public void StateChangerStop()
     {
 
-        if (_currentStateCoroutine != null)
+        if (_stateCurrentCoroutine != null)
         {
-            StopCoroutine(_currentStateCoroutine);
+            StopCoroutine(_stateCurrentCoroutine);
         }
 
-        _currentStateCoroutine = StartCoroutine(StopSpeedState());
+        _stateCurrentCoroutine = StartCoroutine(StateStopSpeed());
     }
     
 
