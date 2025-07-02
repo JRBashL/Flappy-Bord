@@ -24,10 +24,14 @@ public class SubPipeScript : MonoBehaviour
 
     }
     
+  
     void OnTriggerEnter(Collider other)
     {
 
-        if (other.CompareTag("Bord") && PipePrefabScript._isboostedState)
+        Debug.Log("SubPipeScript OnTriggerEnter activated with " + other.gameObject.name);
+
+        
+        if (other.gameObject.CompareTag("Bord") && PipePrefabScript._isboostedState)
         {
             _currentPosVector3 = _parentPipe.transform.position;
             Instantiate(_pipe1broken, _currentPosVector3, Quaternion.identity);

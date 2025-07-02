@@ -82,7 +82,7 @@ public class PipePrefabScript : MonoBehaviour
 
     public void BooleanChangerRegularSpeed()
     {
-        Debug.Log("PipeScript BooleanChangerRegularSpeed Activated");
+        Debug.Log("PipeScript BooleanChangerRegularSpeed() Activated");
         _isboostedState = false;
         Debug.Log("PipePrefabScript _isBoostedState = " + _isboostedState);
     }
@@ -90,5 +90,7 @@ public class PipePrefabScript : MonoBehaviour
     public void BooleanChangerBoostedSpeed()
     {
         _isboostedState = true;
+        Debug.Log("PipeScript BooleanChangerBoostedSpeed() Activated");
+        Debug.Log("PipePrefabScript _isBoostedState = " + _isboostedState);
     }
 }
