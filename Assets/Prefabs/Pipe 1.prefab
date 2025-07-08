@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8362863148883451626}
   - component: {fileID: -3563345576884957113}
   - component: {fileID: 4581453606339500797}
-  - component: {fileID: 4508959291368614036}
   m_Layer: 0
   m_Name: Pipe 1
   m_TagString: Pipes
@@ -128,34 +127,6 @@ MonoBehaviour:
       - m_Target: {fileID: 4081098323564548269}
         m_TargetAssemblyTypeName: PipeScript, Assembly-CSharp
         m_MethodName: BooleanChangerBoostedSpeed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &4508959291368614036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 894366149903624380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6faeb6429d28fa4bb11126e7a1f1229, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameEvent: {fileID: 11400000, guid: 8030fd80a45c4c4409c1cc9e4a220b53, type: 2}
-  onEventTriggered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4081098323564548269}
-        m_TargetAssemblyTypeName: PipePrefabScript, Assembly-CSharp
-        m_MethodName: Pipe1BreakHandler
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
