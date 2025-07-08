@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class SubPipeScript : MonoBehaviour
+public class Pipe1BoxColliderScript : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _pipe1broken, _parentPipe;
+    private GameObject _pipe1broken;
     private Vector3 _currentPosVector3;
+
+    // Game Event to call when the pipe gets replaced with the broken version.
+    [SerializeField]
+    private GameEvent _pipeReplaceGameEvent;
 
 
     void Awake()
     {
-       // Get the parent pipe object
-        _parentPipe = gameObject.transform.root.gameObject;
+     
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,9 +36,7 @@ public class SubPipeScript : MonoBehaviour
         
         if (other.gameObject.CompareTag("Bord") && PipePrefabScript._isboostedState)
         {
-            _currentPosVector3 = _parentPipe.transform.position;
-            Instantiate(_pipe1broken, _currentPosVector3, Quaternion.identity);
-            _parentPipe.SetActive(false); // Disable the parent pipe to prevent further collisions
+            _pipeReplaceGameEvent.TriggerEvent();
         }
     }
 

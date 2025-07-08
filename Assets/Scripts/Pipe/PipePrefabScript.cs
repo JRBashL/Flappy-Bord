@@ -11,12 +11,17 @@ public class PipePrefabScript : MonoBehaviour
 
     private GameObject _pipeGameObject;
 
+    // Serialize the Pipe 1 broken, Pipe 2 broken, Pipe 3 broken GameObject for the substitution
+    [SerializeField]
+    private GameObject _pipe1broken, _pipe2broken, _pipe3broken;
+
     // Boolean listens to GameEvent
     [SerializeField]
     public static bool _isboostedState = false;
     private Rigidbody _rb;
 
-
+    // boolean for pipe substitution. To stop multiple instantiates
+    private bool _ispipeBroken;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,7 +32,8 @@ public class PipePrefabScript : MonoBehaviour
 
     void OnEnable()
     {
-        // Clean reset of pipe from edge case of being hit in the isboosted state
+        // Clean reset of pipe from boosted mode substitution
+        _ispipeBroken = false;
 
     }
 
@@ -66,8 +72,31 @@ public class PipePrefabScript : MonoBehaviour
 */
     }
 
+    /// <summary>
+    /// This function handles the substitution of the the pipe into the broken version. The function gets called from
+    /// the box collider on the children of the pipe prefab. It also has the boolean to make sure there is only one 
+    /// instantiate
+    /// </summary>
+    public void Pipe1BreakHandler()
+    {
+        if (_ispipeBroken)
+        {
+            return;
+        }
 
+        else
+        {
 
+            _ispipeBroken = true;
+
+            Vector3 _currentPosVector3;
+            _currentPosVector3 = transform.position;
+        
+            Instantiate(_pipe1broken, _currentPosVector3, Quaternion.identity);
+            _pipeGameObject.SetActive(false); // Disable the parent pipe to prevent further collisions 
+        }
+        
+    }
 
     private IEnumerator HitterandDisabler()
     {
