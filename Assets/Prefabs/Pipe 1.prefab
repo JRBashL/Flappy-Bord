@@ -146,7 +146,6 @@ GameObject:
   - component: {fileID: 2620812624256162105}
   - component: {fileID: 1637353465158011913}
   - component: {fileID: 9010367617226646290}
-  - component: {fileID: 402048867976004952}
   m_Layer: 0
   m_Name: Pipe Top
   m_TagString: Pipes
@@ -273,20 +272,6 @@ MonoBehaviour:
   upperHalfSphere: {fileID: 4300000, guid: ea110afe4078082468955a8ec59d1ee0, type: 2}
   lowerHalfSphere: {fileID: 4300000, guid: 2150e3d3605f3f54087ca225c7af31aa, type: 2}
   coloredShader: {fileID: 4800000, guid: 38859b428448107418ad51fa96d642e7, type: 3}
---- !u!114 &402048867976004952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1141577558992550715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 938620bf1e0e1bb468378ff63dbe4dda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pipe1broken: {fileID: 5805189430242962703, guid: 7a822c0cc58a178459f4fd1a09b9bd87, type: 3}
-  _parentPipe: {fileID: 0}
 --- !u!1 &1234251258229382859
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +285,6 @@ GameObject:
   - component: {fileID: 8942788440213883152}
   - component: {fileID: 7379311786845622392}
   - component: {fileID: 2892038834931968610}
-  - component: {fileID: 3001743738459686463}
   m_Layer: 0
   m_Name: Pipe Bottom
   m_TagString: Pipes
@@ -427,20 +411,6 @@ MonoBehaviour:
   upperHalfSphere: {fileID: 4300000, guid: ea110afe4078082468955a8ec59d1ee0, type: 2}
   lowerHalfSphere: {fileID: 4300000, guid: 2150e3d3605f3f54087ca225c7af31aa, type: 2}
   coloredShader: {fileID: 4800000, guid: 38859b428448107418ad51fa96d642e7, type: 3}
---- !u!114 &3001743738459686463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1234251258229382859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 938620bf1e0e1bb468378ff63dbe4dda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pipe1broken: {fileID: 5805189430242962703, guid: 7a822c0cc58a178459f4fd1a09b9bd87, type: 3}
-  _parentPipe: {fileID: 0}
 --- !u!1 &3687423431868651017
 GameObject:
   m_ObjectHideFlags: 0
