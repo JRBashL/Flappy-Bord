@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Pipe1BrokenScript : MonoBehaviour
@@ -7,12 +9,27 @@ public class Pipe1BrokenScript : MonoBehaviour
     private CapsuleCollider _ownCollider;
     private Vector3 _collisionLocation;
     private bool _ishit;
+    private float _disappearTime;
+
+    // Declare easing functions
+    private EaseFunc.Ease _easeEnum;
+    private EaseFunc.Function _easeFunc;
+
+    //private MeshRenderer _gO;
 
     void Awake()
     {
         // Get the Rigidbody component attached to this GameObject
         _rb = gameObject.GetComponent<Rigidbody>();
+        //_gO = gameObject.GetComponent<MeshRenderer>();
         _ownCollider = gameObject.GetComponent<CapsuleCollider>();
+
+        // Assign enum as Linear
+        _easeEnum = EaseFunc.Ease.Linear;
+        // Assign Linear function to delegate
+        _easeFunc = EaseFunc.GetEasingFunction(_easeEnum);
+
+        _disappearTime = 3f;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,7 +45,7 @@ public class Pipe1BrokenScript : MonoBehaviour
         {
             transform.Translate(0, 0, PipePrefabScript.PipeSpeed * Time.deltaTime);
         }
-        
+
     }
 
     void OnCollisionEnter(Collision collision)
@@ -50,11 +67,33 @@ public class Pipe1BrokenScript : MonoBehaviour
 
             _ownCollider.enabled = false;
 
-            
+           StartCoroutine(DeSpawner());
+
+
         }
     }
 
+    private IEnumerator DeSpawner()
+    {
+        Renderer rend = GetComponent<Renderer>();
+        Color myColor = rend.material.color;
+        float alpha;
 
+        //Use linear easing functions with normalized time
+        float timecounter = 0f;
+
+        while (timecounter < _disappearTime)
+        {
+            timecounter += Time.deltaTime;
+            float t = Mathf.Clamp01(timecounter / _disappearTime);
+            alpha = _easeFunc(1, 0, t);
+            myColor.a = alpha;
+            rend.material.color = myColor;
+            yield return null;
+        }
+
+        Destroy(gameObject);
+    } 
 
 }
 
