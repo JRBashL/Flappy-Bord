@@ -45,15 +45,28 @@
  * Below is an example of how to use the easing functions in the file. There is a getting function that will return the function
  * from an enum. This is useful since the enum can be exposed in the editor and then the function queried during Start().
  * 
- * EasingFunction.Ease ease = EasingFunction.Ease.EaseInOutQuad;
- * EasingFunction.EasingFunc func = GetEasingFunction(ease;
+ * // This line below is setting the field ease as the enum "EaseInOutQuad"
+ * EasingFunction.Ease ease = EasingFunction.Ease.EaseInOutQuad;  
+ *
+ * // This line below is setting the field func as the delegate Function and putting it as the method GetEasingFunction()
+ * // Remember that delegates are method containers and call the method(s) it's been assigned. In this class the delegate is 
+ * // set to only one function
+ * EasingFunction.Function func = GetEasingFunction(ease);
  * 
  * float value = func(0, 10, 0.67f);
  * 
  * EasingFunction.EaseingFunc derivativeFunc = GetEasingFunctionDerivative(ease);
  * 
  * float derivativeValue = derivativeFunc(0, 10, 0.67f);
+
+ * My notes:
+ * To use this class in the project, you need to do this:
+ * Declare an enum that is from this class: EaseFunc.Ease _easeEnum;
+ * Declare a delagate named Function that is from this class: EaseFunc.Function _easeFunc;
+ * Use the enum with the getting function and set it to the delegate: _easefunc = GetEasingfunction(_easeEnum);
+ * Call the _easefunc at runtime
  */
+
 
 using UnityEngine;
 
