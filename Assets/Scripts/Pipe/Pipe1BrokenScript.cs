@@ -9,19 +9,24 @@ public class Pipe1BrokenScript : MonoBehaviour
     private CapsuleCollider _ownCollider;
     private Vector3 _collisionLocation;
     private bool _ishit;
-    private float _disappearTime;
+
+    [SerializeField]
+    private float _disappearTime, _waitForDisappearTime;
 
     // Declare easing functions
     private EaseFunc.Ease _easeEnum;
     private EaseFunc.Function _easeFunc;
 
-    //private MeshRenderer _gO;
+    // Declare material for alpha control and fade out.
+    private Material _material;
+    private Renderer _rend;
 
     void Awake()
     {
-        // Get the Rigidbody component attached to this GameObject
+        // Get the components attached to this GameObject
         _rb = gameObject.GetComponent<Rigidbody>();
-        //_gO = gameObject.GetComponent<MeshRenderer>();
+        _rend = gameObject.GetComponent<Renderer>();
+        _material = _rend.material;
         _ownCollider = gameObject.GetComponent<CapsuleCollider>();
 
         // Assign enum as Linear
@@ -29,7 +34,6 @@ public class Pipe1BrokenScript : MonoBehaviour
         // Assign Linear function to delegate
         _easeFunc = EaseFunc.GetEasingFunction(_easeEnum);
 
-        _disappearTime = 3f;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -75,8 +79,8 @@ public class Pipe1BrokenScript : MonoBehaviour
 
     private IEnumerator DeSpawner()
     {
-        Renderer rend = GetComponent<Renderer>();
-        Color myColor = rend.material.color;
+        yield return new WaitForSeconds(_waitForDisappearTime);
+
         float alpha;
 
         //Use linear easing functions with normalized time
@@ -87,8 +91,8 @@ public class Pipe1BrokenScript : MonoBehaviour
             timecounter += Time.deltaTime;
             float t = Mathf.Clamp01(timecounter / _disappearTime);
             alpha = _easeFunc(1, 0, t);
-            myColor.a = alpha;
-            rend.material.color = myColor;
+       
+            _material.SetFloat("_alpha", alpha);
             yield return null;
         }
 

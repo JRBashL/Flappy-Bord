@@ -177,6 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba35eab2e108e84d942febf2636ab47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _disappearTime: 1
+  _waitForDisappearTime: 2
 --- !u!1 &5580852737948805791
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,6 +356,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba35eab2e108e84d942febf2636ab47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _disappearTime: 1
+  _waitForDisappearTime: 2
 --- !u!1 &5805189430242962703
 GameObject:
   m_ObjectHideFlags: 0
