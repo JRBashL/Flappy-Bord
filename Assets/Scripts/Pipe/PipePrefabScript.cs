@@ -48,28 +48,11 @@ public class PipePrefabScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("EndofRoadCollider")) 
+        if (other.CompareTag("EndofRoadCollider"))
         {
-            //Debug.Log("Pipe has collided with end of road.");
-            // SetPipeSpeed(0f);
-            // Deleted method when changing the PipeScript speed into a public static property
-            _pipeGameObject.SetActive(false);
-        }
-/*
-        else if (other.CompareTag("Bord") && _isboostedState)
-        {
-            Debug.Log("EnumHitterandDisable Activated");
-            Debug.Log("_isBoostedState = " + _isboostedState);
-            StartCoroutine(HitterandDisabler());
+            _pipeGameObject.SetActive(false);          
         }
 
-        else if (other.CompareTag("Bord") && _isboostedState)
-        {
-            Debug.Log("PipeScript HitterandDisabler Activated");
-            Debug.Log("_isBoostedState = " + _isboostedState);
-            StartCoroutine(HitterandDisabler());
-        }
-*/
     }
 
     /// <summary>
@@ -96,17 +79,6 @@ public class PipePrefabScript : MonoBehaviour
             _pipeGameObject.SetActive(false); // Disable the parent pipe to prevent further collisions 
         }
         
-    }
-
-    private IEnumerator HitterandDisabler()
-    {
-        _rb.isKinematic = false;
-        _rb.AddForce(new Vector3(25f, 0, 25f), ForceMode.Impulse);
-        _rb.AddTorque(new Vector3(0f, 0f, 10f), ForceMode.Impulse);
-        yield return new WaitForSeconds(10f);
-        _rb.linearVelocity = Vector3.zero;
-        _rb.isKinematic = true;
-        _pipeGameObject.SetActive(false);
     }
 
     public void BooleanChangerRegularSpeed()

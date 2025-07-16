@@ -367,6 +367,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3259699565228007734}
+  - component: {fileID: 5514923081815689277}
   m_Layer: 0
   m_Name: Pipe 1 Broken
   m_TagString: Untagged
@@ -393,6 +394,18 @@ Transform:
   - {fileID: 1379999892492758911}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5514923081815689277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805189430242962703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a3375585a97234fa179f1153c4a6c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7767266705504414046
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,6 +420,7 @@ GameObject:
   - component: {fileID: 8965170905860793433}
   - component: {fileID: 6673124448647424579}
   - component: {fileID: 6906833784106957531}
+  - component: {fileID: 2550167607228420868}
   m_Layer: 0
   m_Name: Pipe 1 Top Base
   m_TagString: Pipes
@@ -497,7 +511,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -542,6 +556,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b0d0f28e03ea174d8299ec89a700554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &2550167607228420868
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7767266705504414046}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8970618187050894403
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,6 +597,7 @@ GameObject:
   - component: {fileID: 315515784743637186}
   - component: {fileID: 352007129577037979}
   - component: {fileID: 4967777994859233659}
+  - component: {fileID: 5407315096327333734}
   m_Layer: 0
   m_Name: Pipe 1 Bottom Base
   m_TagString: Pipes
@@ -646,7 +688,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -691,3 +733,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b0d0f28e03ea174d8299ec89a700554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &5407315096327333734
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8970618187050894403}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

@@ -52,6 +52,15 @@ public class Pipe1BrokenScript : MonoBehaviour
 
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("EndofRoadCollider"))
+        {
+            Destroy(gameObject);          
+        }
+
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Pipe1Brokenscript detected collision with " + collision.gameObject.name);
