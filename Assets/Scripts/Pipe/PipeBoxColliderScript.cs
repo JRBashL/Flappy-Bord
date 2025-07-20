@@ -4,7 +4,6 @@ using UnityEngine;
 public class PipeBoxColliderScript : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _pipebroken;
 
     // To reference the prefab script in this prefab instance
     private GameObject _parentPipe;
@@ -33,7 +32,7 @@ public class PipeBoxColliderScript : MonoBehaviour
         {
             // Game event for the future. Adding score etc
             _pipeReplaceGameEvent.TriggerEvent();
-            _pipePrefabScript.Pipe1BreakHandler();
+            _pipePrefabScript.PipeBreakHandler();
         }
     }
 
