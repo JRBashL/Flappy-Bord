@@ -18,6 +18,13 @@ public class Jump_Script : MonoBehaviour
     // in this script
     private Player_Actions_for_Bord pcontrols;
 
+    // Get instance of the BordStatemachine
+    private BordStateMachine _bordState;
+
+    void Awake()
+    {
+        _bordState = GetComponent<BordStateMachine>();
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

@@ -16,6 +16,7 @@ public class BordStateMachine : MonoBehaviour
     private GameEvent BordBeginEvent, BordRegularSpeedEvent, BordBoostSpeedEvent, BordDeadEvent;
 
     public BordStateEnum CurrentBordState { get; private set; }
+    private Coroutine _currentBordCoroutine;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,6 +29,7 @@ public class BordStateMachine : MonoBehaviour
     {
 
     }
+    
     public IEnumerator BeginState()
     {
         Debug.Log("BordStateMachine at BeginState");
@@ -38,7 +40,7 @@ public class BordStateMachine : MonoBehaviour
 
     public IEnumerator RegularSpeedState()
     {
-        Debug.Log("BordStateMachine at RegularSpeedState");        
+        Debug.Log("BordStateMachine at RegularSpeedState");
         CurrentBordState = BordStateEnum.RegularSpeedState;
         BordRegularSpeedEvent.TriggerEvent();
         yield return null;
@@ -46,14 +48,14 @@ public class BordStateMachine : MonoBehaviour
 
     public IEnumerator BoostSpeedState()
     {
-        Debug.Log("BordStateMachine at BoostSpeedState"); 
+        Debug.Log("BordStateMachine at BoostSpeedState");
         CurrentBordState = BordStateEnum.BoostSpeedState;
         BordBoostSpeedEvent.TriggerEvent();
         yield return null;
     }
     public IEnumerator DeadState()
     {
-        Debug.Log("BordStateMachine at DeadState"); 
+        Debug.Log("BordStateMachine at DeadState");
         CurrentBordState = BordStateEnum.DeadState;
         BordDeadEvent.TriggerEvent();
         yield return null;
@@ -62,21 +64,34 @@ public class BordStateMachine : MonoBehaviour
     // Public methods for GameEventListeners if needed.
     public void StartBeginState()
     {
-        StartCoroutine(BeginState());
+        StopCurrentCoroutine();
+        _currentBordCoroutine = StartCoroutine(BeginState());
     }
 
     public void StartRegularSpeedState()
     {
-        StartCoroutine(RegularSpeedState());
+        StopCurrentCoroutine();
+        _currentBordCoroutine = StartCoroutine(RegularSpeedState());
     }
 
     public void StartBoostSpeedState()
     {
-        StartCoroutine(BoostSpeedState());
+        StopCurrentCoroutine();
+        _currentBordCoroutine = StartCoroutine(BoostSpeedState());
     }
 
     public void StartDeadState()
     {
-        StartCoroutine(DeadState());
+        StopCurrentCoroutine();
+        _currentBordCoroutine = StartCoroutine(DeadState());
+    }
+
+    private void StopCurrentCoroutine()
+    {
+        if (_currentBordCoroutine != null)
+        {
+            StopCoroutine(_currentBordCoroutine);
+            _currentBordCoroutine = null;
+        }
     }
 }
