@@ -1,17 +1,26 @@
+# Unity generated
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
 [Ll]ogs/
-UserSettings/
+
+# Visual Studio
+.vs/
 *.csproj
-*.unityproj
 *.sln
-*.suo
-*.tmp
 *.user
-*.userprefs
-*.pidb
-*.booproj
-*.svd
+*.suo
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Rider
+.idea/
+*.sln.iml
+
+# Optional: Ignore personal dev files
+*.local
+*.backup

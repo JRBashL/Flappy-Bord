@@ -18,6 +18,7 @@ public class PipePrefabScript : MonoBehaviour
     // Boolean listens to GameEvent
     [SerializeField]
     public static bool _isboostedState = false;
+
     private Rigidbody _rb;
 
     // boolean for pipe substitution. To stop multiple instantiates
@@ -28,6 +29,8 @@ public class PipePrefabScript : MonoBehaviour
     {
         _pipeGameObject = gameObject.transform.root.gameObject;
         _rb = _pipeGameObject.GetComponent<Rigidbody>();
+
+        Debug.Log(_pipeGameObject.name);
     }
 
     void OnEnable()
@@ -60,7 +63,7 @@ public class PipePrefabScript : MonoBehaviour
     /// the box collider on the children of the pipe prefab. It also has the boolean to make sure there is only one 
     /// instantiate
     /// </summary>
-    public void Pipe1BreakHandler()
+    public void PipeBreakHandler()
     {
         if (_ispipeBroken)
         {
@@ -72,40 +75,34 @@ public class PipePrefabScript : MonoBehaviour
 
             _ispipeBroken = true;
 
-            Vector3 _currentPosVector3;
-            _currentPosVector3 = transform.position;
-        
-            Instantiate(_pipe1broken, _currentPosVector3, Quaternion.identity);
+            Vector3 currentPosVector3;
+            currentPosVector3 = transform.position;
+
+            switch (_pipeGameObject.name)
+            {
+                case "Pipe 1(Clone)":
+                    BrokenPipeSpawner(_pipe1broken, currentPosVector3);
+                    break;
+                case "Pipe 2(Clone)":
+                    BrokenPipeSpawner(_pipe2broken, currentPosVector3);
+                    break;
+                case "Pipe 3(Clone)":
+                    BrokenPipeSpawner(_pipe3broken, currentPosVector3);
+                    break;
+                default:
+                    Debug.Log("PipeBreakHandler couldn't find a broken pipe to spawn!");
+                    break;
+            }
             _pipeGameObject.SetActive(false); // Disable the parent pipe to prevent further collisions 
         }
-        
     }
 
-    /// <summary>
-    /// This function handles the substitution of the the pipe into the broken version. The function gets called from
-    /// the box collider on the children of the pipe prefab. It also has the boolean to make sure there is only one 
-    /// instantiate
-    /// </summary>
-    public void Pipe2BreakHandler()
+    private void BrokenPipeSpawner(GameObject brokenpipe, Vector3 currentPosVector3)
     {
-        if (_ispipeBroken)
-        {
-            return;
-        }
-
-        else
-        {
-
-            _ispipeBroken = true;
-
-            Vector3 _currentPosVector3;
-            _currentPosVector3 = transform.position;
-        
-            Instantiate(_pipe2broken, _currentPosVector3, Quaternion.identity);
-            _pipeGameObject.SetActive(false); // Disable the parent pipe to prevent further collisions 
-        }
-        
+        Instantiate(brokenpipe, currentPosVector3, Quaternion.identity);
     }
+
+
 
     public void BooleanChangerRegularSpeed()
     {
