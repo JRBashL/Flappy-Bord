@@ -1,86 +1,167 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Jump_Script : MonoBehaviour
-
 {
+    // Expose regular and speedboost velocities to Editor.
+    [SerializeField] private float _regularJumpVelocity, _regularGravity, _speedBoostJumpVelocity, _speedBoostGravity;
 
-    // This is the upwards velocity that is applied by the jump. It's an constant velocity and is like if a constant instantaneous
-    // force is applied to the object.
-    [SerializeField] private float _jumpVelocity; // 20f is good
-    [SerializeField] private float _bordGravity; // 30f is good
     private bool _hasGameStarted;
-    private bool _isJumping;
-    private float _fakeGravityVelocity;
-
-    //this is declaring the variable "pcontrols" as the Unity's input system asset
-    // I spent a while with this not working because I didn't know that  I had to auto-generate a class in C# for it so I can call it
-    // in this script
-    private Player_Actions_for_Bord pcontrols;
+    private float _regularGravityVelocity, _speedBoostGravityVelocity;
 
     // Get instance of the BordStatemachine
     private BordStateMachine _bordState;
 
+    // Create Sub FSM for jumping
+    private enum JumpState {NotJumping, RegularSpeedJumping, SpeedBoostJumping}
+    private JumpState _jumpState;
+    private Coroutine _jumpCoroutine;
+
     void Awake()
     {
         _bordState = GetComponent<BordStateMachine>();
+        _jumpState = JumpState.NotJumping;
+
     }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _hasGameStarted = false;
-        _isJumping = false;
+        
     }
 
     private void OnJump()
     {
-        // Starts falling only after the player has pressed click
-        _hasGameStarted = true;
-        _isJumping = true;
-        // Resets falling speed on key press
-        _fakeGravityVelocity = 0;
+        // Check main state of Bord and handles sub FSM accordingly
+        switch (_bordState.CurrentBordState)
+        {
+            case BordStateMachine.BordStateEnum.BeginState:
+
+                _bordState.StartRegularSpeedState();
+                _jumpState = JumpState.RegularSpeedJumping;
+                StopJumpCoroutine();              
+                _jumpCoroutine = StartCoroutine(Jump());
+                break;
+
+            case BordStateMachine.BordStateEnum.RegularSpeedState:
+            
+                StopJumpCoroutine();
+                _jumpState = JumpState.RegularSpeedJumping;
+                _jumpCoroutine = StartCoroutine(Jump());                              
+                break;
+
+            case BordStateMachine.BordStateEnum.BoostSpeedState:
+
+                StopJumpCoroutine();
+                _jumpState = JumpState.SpeedBoostJumping;
+                _jumpCoroutine = StartCoroutine(Jump());
+                break;
+
+            case BordStateMachine.BordStateEnum.DeadState:
+                break;
+        }
+
     }
 
-    //Method applied the jump but it seems to only change the velocity in one frame. Since it's a kinematic object, I can't store velocity
-    private void FakeJump(ref float JumpVelocity, ref bool IsJumping)
+
+    private IEnumerator Jump()
     {
-        // This is the regular gravity that is increasing every frame
-        _fakeGravityVelocity += _bordGravity * Time.deltaTime;
-
-        // If statement to create an arc to the jump, essentially a way to calculate the jump force and the gravity force
-        // but instead since it's a kinematic body, all are changed to translation of coordinates only
-        if (JumpVelocity > _fakeGravityVelocity)   // This means that there is still an upward force here, and is still moving up
+        // Resets falling speeds and starts to add it again every frame
+        _regularGravityVelocity = 0;
+        _speedBoostGravityVelocity = 0;
+        
+        // Logic to control jumping per frame. Coroutine checks each frame if in boosted state while coroutine is still running.
+        while (_jumpState != JumpState.NotJumping)
         {
-            transform.Translate(new Vector3(0f, (JumpVelocity - _fakeGravityVelocity) * Time.deltaTime, 0f));
-        }
-        else // at the peak of the jump, the velocity is zero
-        {
-            IsJumping = false;
+            switch (_bordState.CurrentBordState)
+            {
+                case BordStateMachine.BordStateEnum.RegularSpeedState:
+
+                    if (_regularJumpVelocity > _regularGravityVelocity)
+                    {
+                        // Calculate movement based on decaying speed of +jump velocity and -gravity velocity
+                        transform.Translate(new Vector3(0f, (_regularJumpVelocity - _regularGravityVelocity) * Time.deltaTime, 0f));
+                        break;
+                    }
+
+                    // Once at the top of the jump arc is when jump velocity equals gravity velocity
+                    else { goto endJumpWhileLoop; }
+                    
+                case BordStateMachine.BordStateEnum.BoostSpeedState:
+
+                    if (_speedBoostJumpVelocity > _speedBoostGravityVelocity)
+                    {
+                        // Calculate movement based on decaying speed of +jump velocity and -gravity velocity
+                        transform.Translate(new Vector3(0f, (_speedBoostJumpVelocity - _speedBoostGravityVelocity) * Time.deltaTime, 0f));
+                        break;
+                    }
+                    
+                    // Once at the top of the jump arc is when jump velocity equals gravity velocity
+                    else { goto endJumpWhileLoop; }
+            }
+
+            // Add gravity velocity for next frame calc. Accumulate both gravity velocities for smooth transitions mid-jump.
+            _regularGravityVelocity += _regularGravity * Time.deltaTime;
+            _speedBoostGravityVelocity += _speedBoostGravity * Time.deltaTime;
+            yield return null;
+
         }
 
+        // Code jumps to here once jump velocity ends
+        endJumpWhileLoop:
+        // at the peak of the jump, the velocity is zero and the while loop ends. Reset values and end Coroutine.
+        _regularGravityVelocity = 0;
+        _speedBoostGravityVelocity = 0;
+        _jumpCoroutine = null;
+        _jumpState = JumpState.NotJumping;
+    }
+
+    private void StopJumpCoroutine()
+    {
+        if (_jumpCoroutine != null)
+        {
+            StopCoroutine(_jumpCoroutine);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_hasGameStarted == true & _isJumping == true)
+        switch (_bordState.CurrentBordState)
         {
-            //Apply the method fakeJump which is upwards force minus gravity force
-            FakeJump(ref _jumpVelocity, ref _isJumping); 
-        }
-        else if (_hasGameStarted == true)
-        {
-            // Apply regular gravity
-            _fakeGravityVelocity += _bordGravity * Time.deltaTime;
-            transform.Translate(new Vector3(0, _fakeGravityVelocity * -1, 0) * Time.deltaTime);
-        }
-        else
-        {
-            return;
-        }
-        
-        
+            case BordStateMachine.BordStateEnum.BeginState:
 
+                // Do not apply gravity at begin state
+                break;
+
+            case BordStateMachine.BordStateEnum.RegularSpeedState:
+
+                if (_jumpState == JumpState.NotJumping)
+                {
+                    // Accumulate both gravity velocities for smooth transitions mid-fall between states.
+                    _regularGravityVelocity += _regularGravity * Time.deltaTime;
+                    _speedBoostGravityVelocity += _speedBoostGravity * Time.deltaTime;                    
+                    transform.Translate(new Vector3(0, _regularGravityVelocity * -1, 0) * Time.deltaTime);
+                }
+                break;
+
+            case BordStateMachine.BordStateEnum.BoostSpeedState:
+
+                if (_jumpState == JumpState.NotJumping)
+                {
+                    // Accumulate both gravity velocities for smooth transitions mid-fall between states.
+                    _regularGravityVelocity += _regularGravity * Time.deltaTime;
+                    _speedBoostGravityVelocity += _speedBoostGravity * Time.deltaTime;
+                    transform.Translate(new Vector3(0, _speedBoostGravityVelocity * -1 * Time.deltaTime, 0f));
+                }
+                break;
+
+            case BordStateMachine.BordStateEnum.DeadState:
+
+                break;
+        }
     }
 
 }
