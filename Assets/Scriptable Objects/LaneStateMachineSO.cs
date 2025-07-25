@@ -5,8 +5,9 @@ using UnityEngine;
 public class LaneStateMachine : ScriptableObject
 {
 
-    [SerializeField]
+
     private LaneChangeFSM _laneChangeState;
+    private CurrentLaneFSM _currentLaneState;
     public enum LaneChangeFSM
     {
         OnLane,
@@ -16,8 +17,14 @@ public class LaneStateMachine : ScriptableObject
         LaneBumpRight
     }
 
-    //Property
+    public enum CurrentLaneFSM
+    {
+        Left,
+        Center,
+        Right
+    }
 
+    //Property
     public LaneChangeFSM LaneChangeState
     {
         get
@@ -40,10 +47,30 @@ public class LaneStateMachine : ScriptableObject
         }
     }
 
+    public CurrentLaneFSM CurrentLaneState
+    {
+        get => _currentLaneState;
+
+        set
+        {
+            if (!Enum.IsDefined(typeof(CurrentLaneFSM), value))
+            {
+                Debug.LogError("Setting wrong value for CurrentLaneFSM. Setting to Center.");
+                _currentLaneState = CurrentLaneFSM.Center;
+            }
+
+            else
+            {
+                _currentLaneState = value;
+            }
+        }
+    }
+
     // Set default starting value.
-    void OEnable()
+    void OnEnable()
     {
         _laneChangeState = LaneChangeFSM.OnLane;
+        _currentLaneState = CurrentLaneFSM.Center;
     }
 
 }

@@ -2,16 +2,23 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 
 public class LaneChanger : MonoBehaviour
 {
+    #region SpringUtils
+
     // Declare _omega, _dampingCoef for SpringUtils class spring motion movement
     // Declare _Spring action, an object to hold 4 coefficients for the SpringUtils class calculations
-    [SerializeField] private float _omega;
-    [SerializeField] private float _dampingCoef;
-    private SpringUtils.tDampedSpringMotionParams _SpringAction = new SpringUtils.tDampedSpringMotionParams();
+    [Header("Spring Properties")]
+    [SerializeField] private float _omega, _dampingCoef;
+    private SpringUtils.tDampedSpringMotionParams _springAction = new SpringUtils.tDampedSpringMotionParams();
+
+    #endregion
+
+    #region Lane Variables
+
+    #endregion
 
     // Declare _laneGap and _negLaneGap so the gap is configurable in Unity
     [SerializeField] public int _laneGap;
@@ -59,7 +66,7 @@ public class LaneChanger : MonoBehaviour
 
             // Calculate the SpringUtils class coefficients for spring motion on key press.
             SpringUtils.CalcDampedSpringMotionParams(
-                ref _SpringAction,
+                ref _springAction,
                 Time.deltaTime,
                 _omega,
                 _dampingCoef
@@ -90,7 +97,7 @@ public class LaneChanger : MonoBehaviour
 
             // Calculate the SpringUtils class coefficients for spring motion on key press.
             SpringUtils.CalcDampedSpringMotionParams(
-                ref _SpringAction,
+                ref _springAction,
                 Time.deltaTime,
                 _omega,
                 _dampingCoef
@@ -119,7 +126,7 @@ public class LaneChanger : MonoBehaviour
 
             // Calculate the SpringUtils class coefficients for spring motion on key press
             SpringUtils.CalcDampedSpringMotionParams(
-                ref _SpringAction,
+                ref _springAction,
                 Time.deltaTime,
                 _omega,
                 _dampingCoef
@@ -153,7 +160,7 @@ public class LaneChanger : MonoBehaviour
 
             // Calculate the SpringUtils class coefficients for spring motion on key press.
             SpringUtils.CalcDampedSpringMotionParams(
-                ref _SpringAction,
+                ref _springAction,
                 Time.deltaTime,
                 _omega,
                 _dampingCoef
@@ -202,7 +209,7 @@ public class LaneChanger : MonoBehaviour
                     ref _lanePosition,
                     ref _laneVelocity,
                     _desiredLane,
-                    _SpringAction
+                    _springAction
                 );
 
             // Apply the new calculated position using transform.position. Keeps current y and z positions.
@@ -225,7 +232,7 @@ public class LaneChanger : MonoBehaviour
                     ref _lanePosition,
                     ref _laneVelocity,
                     _desiredLane,
-                    _SpringAction
+                    _springAction
                 );
 
             // Apply the new calculated position using transform.position. Keeps current y and z positions.
@@ -250,7 +257,7 @@ public class LaneChanger : MonoBehaviour
                 ref _lanePosition,
                 ref _laneVelocity,
                 _desiredLane,
-                _SpringAction
+                _springAction
             );
 
             // Apply the new calculated position using transform.position. Keeps current y and z positions.
@@ -275,7 +282,7 @@ public class LaneChanger : MonoBehaviour
                 ref _lanePosition,
                 ref _laneVelocity,
                 _desiredLane,
-                _SpringAction
+                _springAction
             );
 
             // Apply the new calculated position using transform.position. Keeps current y and z positions.
