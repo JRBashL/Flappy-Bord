@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Hierarchy
   m_RootView: {fileID: 10}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 145
+  controlID: 60
   draggingID: 0
 --- !u!114 &3
 MonoBehaviour:
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 16163
+  controlID: 149
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 16234
+  controlID: 61
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -328,7 +328,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 60
+  controlID: 62
   draggingID: 0
 --- !u!114 &14
 MonoBehaviour:
@@ -354,7 +354,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 16160
+  controlID: 63
   draggingID: 0
 --- !u!114 &15
 MonoBehaviour:
@@ -377,10 +377,10 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 462
-    y: 78.66667
-    width: 840
-    height: 518
+    x: 520
+    y: 79
+    width: 945
+    height: 530
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -753,9 +753,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -23.6532, y: -22.869772, z: -26.290228}
+    m_Target: {x: 44.73949, y: 12.33881, z: -3.518438}
     speed: 2
-    m_Value: {x: -23.6532, y: -22.869772, z: -26.290228}
+    m_Value: {x: 44.73949, y: 12.33881, z: -3.518438}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -788,7 +788,7 @@ MonoBehaviour:
         m_Value: 1
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
-      m_Size: {x: 1, y: 1}
+      m_Size: {x: 0.25, y: 0.25}
     zGrid:
       m_Fade:
         m_Target: 0
@@ -801,13 +801,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.033215493, y: 0.87722003, z: -0.061337784, w: 0.47502217}
+    m_Target: {x: -0.2376163, y: 0.3461896, z: -0.09109659, w: -0.9029936}
     speed: 2
-    m_Value: {x: 0.033215493, y: 0.8772201, z: -0.061337788, w: 0.4750222}
+    m_Value: {x: -0.2376163, y: 0.3461896, z: -0.09109659, w: -0.9029936}
   m_Size:
-    m_Target: 45.684036
+    m_Target: 40.33534
     speed: 2
-    m_Value: 45.684036
+    m_Value: 40.33534
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -925,7 +925,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Events
+    - Assets/Prefabs
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -935,9 +935,9 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 88
   m_LastFolders:
-  - Assets/Events
+  - Assets/Prefabs
   m_LastFoldersGridSize: 88
-  m_LastProjectPath: C:\Users\rakit\Desktop\Flappy Bord
+  m_LastProjectPath: C:\Users\Jorrell\OneDrive\Flappy Bord\Flappy Bord
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
@@ -1001,7 +1001,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1027,7 +1027,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 229}
     m_GridSize: 88
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 290
@@ -1121,7 +1121,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 1afaffff18fbffff
+      m_ExpandedIDs: 14faffff80faffff8cfaffff16fbffff18fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1226,7 +1226,7 @@ MonoBehaviour:
       y: 21
       width: 945
       height: 509
-    m_Scale: {x: 1.5, y: 1.5}
+    m_Scale: {x: 1, y: 1}
     m_Translation: {x: 472.5, y: 254.5}
     m_MarginLeft: 0
     m_MarginRight: 0
@@ -1234,10 +1234,10 @@ MonoBehaviour:
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -315
-      y: -169.66667
-      width: 630
-      height: 339.33334
+      x: -472.5
+      y: -254.5
+      width: 945
+      height: 509
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 945, y: 530}
