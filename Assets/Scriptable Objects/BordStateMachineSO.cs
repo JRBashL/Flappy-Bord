@@ -63,10 +63,30 @@ public class BordStateMachineSO : ScriptableObject
         }
     }
 
+    // Sets the default starting state
     void OnEnable()
     {
         _bordMainState = BordMainFSM.BeginState;
     }
 
+    // Public methods for GameEventListeners if needed.
+    public void StartBeginState()
+    {
+        BordMainState = BordMainFSM.BeginState;
+    }
 
+    public void StartRegularSpeedState()
+    {
+        BordMainState = BordMainFSM.RegularSpeedState;
+    }
+
+    public void StartBoostSpeedState()
+    {
+        BordMainState = BordMainFSM.BoostSpeedState;
+    }
+
+    public void StartDeadState()
+    {
+        BordMainState = BordMainFSM.DeadState;
+    }
 }
