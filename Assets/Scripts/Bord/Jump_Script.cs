@@ -3,8 +3,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEditor;
-// Shorthanding the external script for the enum
+// Shorthanding the external script for the enums
 using BordStateSOFSM = BordStateMachineSO.BordMainFSM;
+using JumpStateSOFSM = JumpStateMachineSO.JumpFSM;
 
 public class Jump_Script : MonoBehaviour
 {
@@ -13,12 +14,10 @@ public class Jump_Script : MonoBehaviour
 
     private float _regularGravityVelocity, _speedBoostGravityVelocity;
 
-    // Get instance of the BordStateMachineSO
+    // Get instance of the BordStateMachineSO and JumpStateMachineSO
     [SerializeField] private BordStateMachineSO _bordStateSO;
+    [SerializeField] private JumpStateMachineSO _jumpStateSO;
 
-    // Create Sub FSM for jumping
-    private enum JumpState { NotJumping, RegularSpeedJumping, SpeedBoostJumping }
-    private JumpState _jumpState;
     private Coroutine _jumpCoroutine;
 
     void Awake()
@@ -27,11 +26,19 @@ public class Jump_Script : MonoBehaviour
         {
             Debug.LogWarning("Jump_Script needs BordStateMachineSO scriptable object to drag in!");
             #if UNITY_EDITOR
-            EditorApplication.isPlaying = false;
+                EditorApplication.isPlaying = false;
             #endif
         }
 
-        _jumpState = JumpState.NotJumping;
+        else if (_jumpStateSO == null)
+        {
+            Debug.LogWarning("Jump_Script needs JumpStateMachineSO scriptable object to drag in!");
+            #if UNITY_EDITOR
+                EditorApplication.isPlaying = false;
+            #endif
+        }
+
+
 
     }
 
@@ -47,7 +54,7 @@ public class Jump_Script : MonoBehaviour
 
             case BordStateSOFSM.RegularSpeedState:
 
-                if (_jumpState == JumpState.NotJumping)
+                if (_jumpStateSO.JumpState == JumpStateSOFSM.NotJumping)
                 {
                     // Accumulate both gravity velocities for smooth transitions mid-fall between states.
                     AddGravityVelocities();
@@ -57,7 +64,7 @@ public class Jump_Script : MonoBehaviour
 
             case BordStateSOFSM.BoostSpeedState:
 
-                if (_jumpState == JumpState.NotJumping)
+                if (_jumpStateSO.JumpState == JumpStateSOFSM.NotJumping)
                 {
                     // Accumulate both gravity velocities for smooth transitions mid-fall between states.
                     AddGravityVelocities();
@@ -81,7 +88,7 @@ public class Jump_Script : MonoBehaviour
 
                 //Set the enum of the SO FSM
                 _bordStateSO.BordMainState = BordStateSOFSM.RegularSpeedState;
-                _jumpState = JumpState.RegularSpeedJumping;
+                _jumpStateSO.JumpState = JumpStateSOFSM.RegularSpeedJumping;
                 StopJumpCoroutine();
                 _jumpCoroutine = StartCoroutine(Jump());
                 break;
@@ -89,14 +96,14 @@ public class Jump_Script : MonoBehaviour
             case BordStateSOFSM.RegularSpeedState:
 
                 StopJumpCoroutine();
-                _jumpState = JumpState.RegularSpeedJumping;
+                _jumpStateSO.JumpState = JumpStateSOFSM.RegularSpeedJumping;
                 _jumpCoroutine = StartCoroutine(Jump());
                 break;
 
             case BordStateSOFSM.BoostSpeedState:
 
                 StopJumpCoroutine();
-                _jumpState = JumpState.SpeedBoostJumping;
+                _jumpStateSO.JumpState = JumpStateSOFSM.SpeedBoostJumping;
                 _jumpCoroutine = StartCoroutine(Jump());
                 break;
 
@@ -112,7 +119,7 @@ public class Jump_Script : MonoBehaviour
         ResetGravityVelocities();
 
         // Logic to control jumping per frame. Coroutine checks each frame if in boosted state while coroutine is still running.
-        while (_jumpState != JumpState.NotJumping)
+        while (_jumpStateSO.JumpState != JumpStateSOFSM.NotJumping)
         {
             switch (_bordStateSO.BordMainState)
             {
@@ -152,7 +159,7 @@ public class Jump_Script : MonoBehaviour
         // at the peak of the jump, the velocity is zero and the while loop ends. Reset values and end Coroutine.
         ResetGravityVelocities();
         _jumpCoroutine = null;
-        _jumpState = JumpState.NotJumping;
+        _jumpStateSO.JumpState = JumpStateSOFSM.NotJumping;
     }
 
     private void StopJumpCoroutine()
