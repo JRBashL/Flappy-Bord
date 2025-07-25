@@ -7,7 +7,8 @@ public class BordStateMachineSO : ScriptableObject
     [SerializeField]
     private GameEvent BordBeginEvent, BordRegularSpeedEvent, BordBoostSpeedEvent, BordDeadEvent;
 
-    [SerializeField] private BordMainFSM _bordMainState;
+    [SerializeField]
+    private BordMainFSM _bordMainState;
 
     public enum BordMainFSM
     {
@@ -35,7 +36,7 @@ public class BordStateMachineSO : ScriptableObject
             {
 
                 _bordMainState = value;
-                
+
                 switch (value)
                 {
                     case BordMainFSM.BeginState:
@@ -58,7 +59,14 @@ public class BordStateMachineSO : ScriptableObject
                         BordDeadEvent.TriggerEvent();
                         break;
                 }
-            }           
+            }
         }
     }
+
+    void OnEnable()
+    {
+        _bordMainState = BordMainFSM.BeginState;
+    }
+
+
 }

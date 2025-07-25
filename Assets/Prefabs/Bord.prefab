@@ -271,8 +271,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5586f5aaaac24948a14a5a47c0bd392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpVelocity: 24
-  _bordGravity: 50
+  _regularJumpVelocity: 45
+  _regularGravity: 70
+  _speedBoostJumpVelocity: 30
+  _speedBoostGravity: 20
+  _bordStateSO: {fileID: 11400000, guid: 9ed5c0456474b854a864cc104303b8e7, type: 2}
 --- !u!114 &2569131430167046390
 MonoBehaviour:
   m_ObjectHideFlags: 0
