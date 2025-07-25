@@ -1953,6 +1953,10 @@ PrefabInstance:
       propertyPath: BordRegularSpeedEvent
       value: 
       objectReference: {fileID: 11400000, guid: 4c91758d3e576c24f9b355722f7e10f9, type: 2}
+    - target: {fileID: 2569131430167046390, guid: 3233e5ebdcb88d341af3b61e4f064a31, type: 3}
+      propertyPath: _bordStateSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 9ed5c0456474b854a864cc104303b8e7, type: 2}
     - target: {fileID: 4219645521275785833, guid: 3233e5ebdcb88d341af3b61e4f064a31, type: 3}
       propertyPath: m_Name
       value: Bord
