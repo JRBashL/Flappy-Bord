@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc50e2107967a0245995d0d357af0396, type: 3}
   m_Name: BordMainState
   m_EditorClassIdentifier: 
-  BordBeginEvent: {fileID: 0}
-  BordRegularSpeedEvent: {fileID: 0}
-  BordBoostSpeedEvent: {fileID: 0}
-  BordDeadEvent: {fileID: 0}
-  _bordMainState: 0
+  BordBeginEvent: {fileID: 11400000, guid: d176d814b9a31834e80d6a4a9e4c710d, type: 2}
+  BordRegularSpeedEvent: {fileID: 11400000, guid: 4c91758d3e576c24f9b355722f7e10f9, type: 2}
+  BordBoostSpeedEvent: {fileID: 11400000, guid: ef97eeb726ea83042b1303fd98a8f7ed, type: 2}
+  BordDeadEvent: {fileID: 11400000, guid: dd916534374027b45b516de7286b12c0, type: 2}
+  _bordMainState: 2

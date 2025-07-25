@@ -986,9 +986,10 @@ GameObject:
   - component: {fileID: 1045070433}
   - component: {fileID: 1045070432}
   - component: {fileID: 1045070431}
+  - component: {fileID: 1045070435}
   m_Layer: 0
-  m_Name: Plane
-  m_TagString: Untagged
+  m_Name: Ground
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1083,6 +1084,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1045070435
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045070430}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1207491004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1914,6 +1937,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 736517012319342864, guid: 3233e5ebdcb88d341af3b61e4f064a31, type: 3}
+      propertyPath: BordDeadEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: dd916534374027b45b516de7286b12c0, type: 2}
+    - target: {fileID: 736517012319342864, guid: 3233e5ebdcb88d341af3b61e4f064a31, type: 3}
+      propertyPath: BordBeginEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: d176d814b9a31834e80d6a4a9e4c710d, type: 2}
+    - target: {fileID: 736517012319342864, guid: 3233e5ebdcb88d341af3b61e4f064a31, type: 3}
+      propertyPath: BordBoostSpeedEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: ef97eeb726ea83042b1303fd98a8f7ed, type: 2}
+    - target: {fileID: 736517012319342864, guid: 3233e5ebdcb88d341af3b61e4f064a31, type: 3}
+      propertyPath: BordRegularSpeedEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 4c91758d3e576c24f9b355722f7e10f9, type: 2}
     - target: {fileID: 4219645521275785833, guid: 3233e5ebdcb88d341af3b61e4f064a31, type: 3}
       propertyPath: m_Name
       value: Bord
