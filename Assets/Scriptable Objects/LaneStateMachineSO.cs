@@ -4,9 +4,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LaneStateMachine", menuName = "Scriptable Objects/LaneStateMachine")]
 public class LaneStateMachineSO : ScriptableObject
 {
-
-
+    [SerializeField]
     private LaneChangeFSM _laneChangeState;
+    [SerializeField]
     private CurrentLaneFSM _currentLaneState;
     public enum LaneChangeFSM
     {
