@@ -24,7 +24,7 @@ public class LaneChanger : MonoBehaviour
     // Declare floats _leftBumpVelocity and _rightBumpVelocity for bump left and bump right
     // Declare int for current lanes and desired lanes
         [Header("Lane Change Properties")]
-        [SerializeField] public int _laneGap;
+        [SerializeField] private int _laneGap;
         int[] _laneCoord;
         private float _laneVelocity, _lanePosition;
         [SerializeField] private float _leftBumpVelocity, _rightBumpVelocity;

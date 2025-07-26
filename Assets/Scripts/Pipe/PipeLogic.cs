@@ -8,62 +8,53 @@ public class PipeSpawnLogic : MonoBehaviour
 {
 
     // Region for declaring fields related to the Object Pooling
-    #region 
+    #region Object Pool
 
-    // Declare integer for pipe object pooling. The size of the pool can be determined in the inspector.
-    [SerializeField] private int _pipePoolSize;
+        [Header("Object Pooling")]
+        // Declare integer for pipe object pooling. The size of the pool can be determined in the inspector.
+        [SerializeField] private int _pipePoolSize;
 
-    // Declare a list to get a reference for all of the objects in the pool
-    List<GameObject> _pipePoolList;
+        // Declare a list to get a reference for all of the objects in the pool
+        List<GameObject> _pipePoolList;
 
-    // Declare GameObject prefab that the pipes spawn from.        
-    [SerializeField] private GameObject _prefabPipes1;
-    [SerializeField] private GameObject _prefabPipes2;
-    [SerializeField] private GameObject _prefabPipes3;
-
-    // Declare the weights for each one
-    [SerializeField] private float _prefabPipes1SpawnRate;
-    [SerializeField] private float _prefabPipes2SpawnRate;
-    [SerializeField] private float _prefabPipes3SpawnRate;
-
+        // Declare GameObject prefabs that the pipes spawn from.        
+        [SerializeField] private GameObject _prefabPipes1, _prefabPipes2, _prefabPipes3;
 
     #endregion
 
-    // Region for delcaring fields related to Pipe Spawning
-    #region 
+    #region Pipe Spawing 
 
-    // Declare a speed of the pipes
-    [SerializeField] private float _pipeSpeed;
+    // Declare the weights for each pipe prefab
+        [SerializeField] private float _prefabPipes1SpawnRate, _prefabPipes2SpawnRate, _prefabPipes3SpawnRate;
 
-    // Declare how far away the pipes spawn at
-    [SerializeField] private float _pipeSpawnDistance;
+        // Declare how far away the pipes spawn from the player
+        [SerializeField] private float _pipeSpawnDistance;
 
-    // Declare the pipe spawn timer
-    [SerializeField] private float _pipeSpawnTimer;
+        // Declare the pipe spawn timer
+        [SerializeField] private float _pipeSpawnTimer;
 
-    // Declare the lane gap and declare an array for the lanes.
-    [SerializeField] private int _laneGap;
-    int[] _laneArray;
+        // Height variation for the pipe spawns
+        [SerializeField] private float _maxYOffset, _minYOffset;
 
-    int[] _pipeTypeArray;
-    List<GameObject> _pipes1PoolList;
-    List<GameObject> _pipes2PoolList;
-    List<GameObject> _pipes3PoolList;
+        // Declare the lane gap and declare an array for the lanes.
+        [SerializeField] private int _laneGap;
+        int[] _laneArray;
 
-    #endregion
+        int[] _pipeTypeArray;
+        List<GameObject> _pipes1PoolList, _pipes2PoolList, _pipes3PoolList;
 
-    // clock for the timer 
-    private float _clock;
+        // clock for the timer 
+        private float _clock;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+        #endregion
+
+    void Awake()
     {
         // At the start of this scene I want set a pool of pipes. The size is configurable in the inspector.
         _laneArray = new int[] { -_laneGap, 0, _laneGap };
         _pipes1PoolList = ObjectPool(_prefabPipes1, _pipePoolSize);
         _pipes2PoolList = ObjectPool(_prefabPipes2, _pipePoolSize);
         _pipes3PoolList = ObjectPool(_prefabPipes3, _pipePoolSize);
-
     }
 
     // Update is called once per frame
@@ -74,17 +65,17 @@ public class PipeSpawnLogic : MonoBehaviour
         if (_clock > _pipeSpawnTimer)
         {
             // Creates the variable height for the new set of pipes to spawn
-            float[] yOffsetArray = new float[] { Random.Range(2f, 18f), Random.Range(-5f, 18f), Random.Range(-5f, 18f) };
+            float yOffsetArray = Random.Range(_minYOffset, _maxYOffset);
 
             // Generates an array of which pipes (0, 1, 2) based on a weighted spawn rate.
             _pipeTypeArray = WeightedRNG(new int[] { 1, 1, 1 }, _prefabPipes1SpawnRate, _prefabPipes2SpawnRate, _prefabPipes3SpawnRate);
-            // Debug.Log("The field _pipeTypeArray is " + _pipeTypeArray[0] + _pipeTypeArray[1] + _pipeTypeArray[2]);
 
-            // FOR DEBUGGING
+            // FOR DEBUGGING. Overwrite the _pipeTypeArray here.
             //_pipeTypeArray = new int[]{0, 1, 2};
 
             // Spawns the pipes in the lane
             PipeSpawn(yOffsetArray);
+
             // Reset timer
             _clock = 0f;
         }
@@ -172,38 +163,33 @@ public class PipeSpawnLogic : MonoBehaviour
         return result;
     }
 
-    // Teleports a pipe to a lane. The distance away in the z direction is specified in the inspector
-    private void PipeSpawn(
-        //float PipeSpawnDistance,   // Spawn distance that is away in the z direction to get it to spawn off camera
-        //int[] LaneArray,           // This is an array that holds the x position of the left, middle, and right lanes
-        float[] YOffsetArray)      // This is to control the random placement of the gap between the pipes
-        //float PipeSpeed)           // Pipes speed in the -z direction, going towards the player.
+    
+    /// <summary>
+    /// Teleports a pipe to a lane. There is an operation to check the list of gameobjects from the pool to see which is active. 
+    /// Then creates a new list of 3
+    /// </summary>
+    /// <param name="YOffsetArray"></param>
+    // inactive pipes that can be spawned.
+    private void PipeSpawn(float YOffsetArray)   
     {
 
-        // This is an operation to check the list of gameobjects from the pool to see which is active. Then creates a new list of 3
-        // inactive pipes that can be spawned.
+        // Creates list and fill it with null values. List has to be filled out to put GameObjects by index.
         List<GameObject> listOfPipesToSpawn = new List<GameObject>();
 
-        for (int index = 0; index < _pipeTypeArray.Length; index++)
+        for (int i = 0; i < _pipeTypeArray.Length; i++)
         {
             listOfPipesToSpawn.Add(null);
         }
 
-        List<GameObject> mediaryList = new List<GameObject>();
-
-
-
+        // The for loop will check which number is in the _pipeTypeArray and make that the mediary list. Since there are multiple pools
+        // where each pool is a different pipe type. This for loop will assign the mediary list to the correct pool depending on
+        // what the _pipeTypeArray shows. Example if _pipeTypeArray[1] = 1, that will be the that coressponded pipe poo1 
+        List<GameObject> mediaryList;
         for (int index = 0; index < _pipeTypeArray.Length; index++)
         {
-
-            // will check which number is in the _pipeTypeArray and make that the mediary list. Since there are multiple pools
-            // where each pool is a different pipe type. This for loop will assign the mediary list to the correct pool depending on
-            // what the _pipeTypeArray shows. Example if _pipeTypeArray[1] = 1, that will be the that coressponded pipe poo1 
-
             if (_pipeTypeArray[index] == 0)
             {
                 mediaryList = _pipes1PoolList;
-
             }
 
             else if (_pipeTypeArray[index] == 1)
@@ -215,7 +201,6 @@ public class PipeSpawnLogic : MonoBehaviour
             {
                 mediaryList = _pipes3PoolList;
             }
-
 
             // then once we're done checking for which pool to use by mediary list
             // we run through the pool and see which ones are disabled or not.          
@@ -229,8 +214,6 @@ public class PipeSpawnLogic : MonoBehaviour
                     break;
                 }
             }
-
-
         }
 
         //Debug.Log("The list for types to spawn is" + listOfPipesToSpawn[0] + listOfPipesToSpawn[1] + listOfPipesToSpawn[2]);
@@ -239,12 +222,8 @@ public class PipeSpawnLogic : MonoBehaviour
         // and the third one on the list in lane 3.
         for (int i = 0; i < 3; i++)
         {
-            listOfPipesToSpawn[i].transform.position = new Vector3(_laneArray[i], YOffsetArray[i], _pipeSpawnDistance);
+            listOfPipesToSpawn[i].transform.position = new Vector3(_laneArray[i], YOffsetArray, _pipeSpawnDistance);
             listOfPipesToSpawn[i].transform.rotation = Quaternion.identity;
-            
-                 
-            // Old line of code below where I set the speed of the pipe via a method. 
-            // listOfPipesToSpawn[i].GetComponent<PipeScript>().SetPipeSpeed(_pipeSpeed);
         }
     }
 
