@@ -203,6 +203,8 @@ MonoBehaviour:
   _laneGap: 12
   _leftBumpVelocity: -60
   _rightBumpVelocity: 60
+  _LaneStateMachineSOSO: {fileID: 11400000, guid: 7f2984a4e3b696747bbba2954ead24c4, type: 2}
+  _bordStateMachineSO: {fileID: 11400000, guid: 9ed5c0456474b854a864cc104303b8e7, type: 2}
 --- !u!114 &7031765780513208274
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "LaneStateMachine", menuName = "Scriptable Objects/LaneStateMachine")]
-public class LaneStateMachine : ScriptableObject
+public class LaneStateMachineSO : ScriptableObject
 {
 
 

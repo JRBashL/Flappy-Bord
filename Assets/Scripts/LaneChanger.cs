@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 // Shorthanding the external script for the enums
-using LaneChangeSOFSM = LaneStateMachine.LaneChangeFSM;
-using LaneStateSOFSM = LaneStateMachine.CurrentLaneFSM;
-using BordStateSOFSM = BordStateMachine.BordStateEnum;
+using LaneChangeSOFSM = LaneStateMachineSO.LaneChangeFSM;
+using LaneStateSOFSM = LaneStateMachineSO.CurrentLaneFSM;
+using BordStateSOFSM = BordStateMachineSO.BordMainFSM;
 
 public class LaneChanger : MonoBehaviour
 {
@@ -35,9 +35,9 @@ public class LaneChanger : MonoBehaviour
     #region FSM
     
         [Header("FSM Scriptable Objects")]
-        // Get reference to LaneStateMachine and BordStateMachine
-        [SerializeField] private LaneStateMachine _laneStateMachineSO;
-        [SerializeField] private BordStateMachine _bordStateMachineSO;
+        // Get reference to LaneStateMachineSO and BordStateMachine
+        [SerializeField] private LaneStateMachineSO _LaneStateMachineSOSO;
+        [SerializeField] private BordStateMachineSO _bordStateMachineSO;
 
     #endregion
 
@@ -50,53 +50,26 @@ public class LaneChanger : MonoBehaviour
 
     void Update()
     {
-        if (_bordStateMachineSO.CurrentBordState == BordStateSOFSM.BeginState || _bordStateMachineSO.CurrentBordState == BordStateSOFSM.DeadState)
+        if (_bordStateMachineSO.BordMainState == BordStateSOFSM.BeginState || _bordStateMachineSO.BordMainState == BordStateSOFSM.DeadState)
         {
             // Does not do anything if Bord is Dead.
         }
 
         // Peforms this code if the lange change state is anything but OnLane, meaning when it's in the middle of changing lanes.
-        else if (_laneStateMachineSO.LaneChangeState != LaneChangeSOFSM.OnLane)
+        else if (_LaneStateMachineSOSO.LaneChangeState != LaneChangeSOFSM.OnLane)
         {
             // Calculate next position using damped spring code
             SpringUtils.UpdateDampedSpringMotion(ref _lanePosition, ref _laneVelocity, _desiredLane, _springAction);
 
-            switch (_laneStateMachineSO.LaneChangeState)
-            {
-                case LaneChangeSOFSM.LaneChangeLeft:
-
-                    // Apply the new calculated position using transform.position. Keeps current y and z positions.
-                    transform.position = new Vector3(_lanePosition, transform.position.y, transform.position.z);
-                    LaneChangeEnder();
-                    break;
-
-                case LaneChangeSOFSM.LaneBumpLeft:
-
-                    // Apply the new calculated position using transform.position. Keeps current y and z positions.
-                    transform.position = new Vector3(_lanePosition, transform.position.y, transform.position.z);
-                    LaneChangeEnder();
-                    break;
-
-                case LaneChangeSOFSM.LaneChangeRight:
-
-                    // Apply the new calculated position using transform.position. Keeps current y and z positions.
-                    transform.position = new Vector3(_lanePosition, transform.position.y, transform.position.z);
-                    LaneChangeEnder();
-                    break;
-
-                case LaneChangeSOFSM.LaneBumpRight:
-
-                    // Apply the new calculated position using transform.position. Keeps current y and z positions.
-                    transform.position = new Vector3(_lanePosition, transform.position.y, transform.position.z);
-                    LaneChangeEnder();
-                    break;
-            }
+            // Apply the new calculated position using transform.position. Keeps current y and z positions.
+            transform.position = new Vector3(_lanePosition, transform.position.y, transform.position.z);
+            LaneChangeEnder();    
         }
     }
 
     private void OnMoveLeft()
     {
-        if (_bordStateMachineSO.CurrentBordState == BordStateSOFSM.DeadState || _bordStateMachineSO.CurrentBordState == BordStateSOFSM.DeadState)
+        if (_bordStateMachineSO.BordMainState == BordStateSOFSM.DeadState || _bordStateMachineSO.BordMainState == BordStateSOFSM.DeadState)
         {
             // Does nothing in the states above.
         }
@@ -107,7 +80,7 @@ public class LaneChanger : MonoBehaviour
             SpringUtils.CalcDampedSpringMotionParams(ref _springAction, Time.deltaTime, _omega, _dampingCoef);
 
             // Checks if it's okay to move left by checking if your current lane is not on the most left position
-            if (_laneStateMachineSO.CurrentLaneState != LaneStateSOFSM.Left)
+            if (_LaneStateMachineSOSO.CurrentLaneState != LaneStateSOFSM.Left)
             {
                 // Reset lane velocity
                 _laneVelocity = 0;
@@ -117,8 +90,8 @@ public class LaneChanger : MonoBehaviour
                 _desiredLane = RealLanePositionConverter() - _laneGap;
 
                 // State changes. For the Currentlane state, it shifts the current enum one to the left.
-                _laneStateMachineSO.LaneChangeState = LaneChangeSOFSM.LaneChangeLeft;
-                _laneStateMachineSO.CurrentLaneState = (LaneStateSOFSM)((int)_laneStateMachineSO.CurrentLaneState - 1);
+                _LaneStateMachineSOSO.LaneChangeState = LaneChangeSOFSM.LaneChangeLeft;
+                _LaneStateMachineSOSO.CurrentLaneState = (LaneStateSOFSM)((int)_LaneStateMachineSOSO.CurrentLaneState - 1);
             }
 
             // When player is on the very left lane, will do a "bump" for feedback to player saying, hey you tried to move but it's not allowed.
@@ -129,14 +102,14 @@ public class LaneChanger : MonoBehaviour
                 _laneVelocity = _leftBumpVelocity;
 
                 // State change
-                _laneStateMachineSO.LaneChangeState = LaneChangeSOFSM.LaneBumpLeft;
+                _LaneStateMachineSOSO.LaneChangeState = LaneChangeSOFSM.LaneBumpLeft;
             }
         }
     }
 
     private void OnMoveRight()
     {
-        if (_bordStateMachineSO.CurrentBordState == BordStateSOFSM.DeadState || _bordStateMachineSO.CurrentBordState == BordStateSOFSM.DeadState)
+        if (_bordStateMachineSO.BordMainState == BordStateSOFSM.DeadState || _bordStateMachineSO.BordMainState == BordStateSOFSM.DeadState)
         {
             // Does nothing in the states above.
         }
@@ -147,7 +120,7 @@ public class LaneChanger : MonoBehaviour
             SpringUtils.CalcDampedSpringMotionParams(ref _springAction, Time.deltaTime, _omega, _dampingCoef);
 
             // Checks if it's okay to move right by checking if your current lane is not on the most right position
-            if (_laneStateMachineSO.CurrentLaneState != LaneStateSOFSM.Right)
+            if (_LaneStateMachineSOSO.CurrentLaneState != LaneStateSOFSM.Right)
             {
                 // Reset lane velocity
                 _laneVelocity = 0;
@@ -157,8 +130,8 @@ public class LaneChanger : MonoBehaviour
                 _desiredLane = RealLanePositionConverter() + _laneGap;
 
                 // State changes. For the Currentlane state, it shifts the current enum one to the left.
-                _laneStateMachineSO.LaneChangeState = LaneChangeSOFSM.LaneChangeRight;
-                _laneStateMachineSO.CurrentLaneState = (LaneStateSOFSM)((int)_laneStateMachineSO.CurrentLaneState + 1);
+                _LaneStateMachineSOSO.LaneChangeState = LaneChangeSOFSM.LaneChangeRight;
+                _LaneStateMachineSOSO.CurrentLaneState = (LaneStateSOFSM)((int)_LaneStateMachineSOSO.CurrentLaneState + 1);
             }
 
             // When player is on the very right lane, will do a "bump" for feedback to player saying, hey you tried to move but it's not allowed.
@@ -169,7 +142,7 @@ public class LaneChanger : MonoBehaviour
                 _laneVelocity = _rightBumpVelocity;
 
                 // State changes
-                _laneStateMachineSO.LaneChangeState = LaneChangeSOFSM.LaneBumpRight;
+                _LaneStateMachineSOSO.LaneChangeState = LaneChangeSOFSM.LaneBumpRight;
 
             }
         }
@@ -179,7 +152,7 @@ public class LaneChanger : MonoBehaviour
     // how wide the gap is set in Unity.
     private int RealLanePositionConverter()
     {
-        switch (_laneStateMachineSO.CurrentLaneState)
+        switch (_LaneStateMachineSOSO.CurrentLaneState)
         {
             case LaneStateSOFSM.Left:
                 return _laneCoord[0];
@@ -197,7 +170,7 @@ public class LaneChanger : MonoBehaviour
     {
         if (Math.Abs(_laneVelocity) < 0.01 && Math.Abs(_lanePosition - _desiredLane) < 0.01)
         {
-            _laneStateMachineSO.LaneChangeState = LaneChangeSOFSM.OnLane;
+            _LaneStateMachineSOSO.LaneChangeState = LaneChangeSOFSM.OnLane;
             transform.position = new Vector3(_desiredLane, transform.position.y, transform.position.z);
         }
     }
