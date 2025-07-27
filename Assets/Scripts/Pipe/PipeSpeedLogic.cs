@@ -61,7 +61,7 @@ public class PipeSpeedLogic : MonoBehaviour
         _enumEaseOutQuint = EaseFunc.Ease.EaseOutQuint;
         _functionEaseOutQuint = EaseFunc.GetEasingFunction(_enumEaseOutQuint);
         _enumEaseLinear = EaseFunc.Ease.Linear;
-        _functionLinear = EaseFunc.GetEasingFunction(_enumEaseInQuint);
+        _functionLinear = EaseFunc.GetEasingFunction(_enumEaseLinear);
 
     }
 
