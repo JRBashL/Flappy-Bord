@@ -20,7 +20,59 @@ public class GameEvent : ScriptableObject
         }
     }
 
-  
+    /// <summary>
+    /// Trigger Event to Invoke listeners with one float number.
+    /// </summary>
+    /// <param name="data">The float number to send through the Invoke.</param>
+    public void TriggerEventOneFloat(float data)
+    {
+        for (int i = _listeners.Count - 1; i >= 0; i--)
+        {
+            _listeners[i].OnEventTriggeredOneFloat(data);
+        }
+    }
+
+    /// <summary>
+    /// Trigger Event to Invoke listeners with two float numbers.
+    /// </summary>
+    /// <param name="data1">The first float number to send through the Invoke.</param>
+    /// <param name="data2">The second float number to send through the Invoke.</param>
+    public void TriggerEventTwoFloat(float data1, float data2)
+    {
+        for (int i = _listeners.Count - 1; i >= 0; i--)
+        {
+            _listeners[i].OnEventTriggeredTwoFloat(data1, data2);
+        }
+    }
+
+    /// <summary>
+    /// Trigger Event to Invoke listeners with three float numbers.
+    /// </summary>
+    /// <param name="data1">The first float number to send through the Invoke.</param>
+    /// <param name="data2">The second float number to send through the Invoke.</param>
+    /// <param name="data3">The second float number to send through the Invoke.</param>
+    public void TriggerEventThreeFloat(float data1, float data2, float data3)
+    {
+        for (int i = _listeners.Count - 1; i >= 0; i--)
+        {
+            _listeners[i].OnEventTriggeredThreeFloat(data1, data2, data3);
+        }
+    }
+
+    /// <summary>
+    /// Trigger Event to Invoke listeners with four float numbers.
+    /// </summary>
+    /// <param name="data1">The first float number to send through the Invoke.</param>
+    /// <param name="data2">The second float number to send through the Invoke.</param>
+    /// <param name="data3">The second float number to send through the Invoke.</param>
+    /// <param name="data4">The second float number to send through the Invoke.</param>
+    public void TriggerEventFourFloat(float data1, float data2, float data3, float data4)
+    {
+        for (int i = _listeners.Count - 1; i >= 0; i--)
+        {
+            _listeners[i].OnEventTriggeredFourFloat(data1, data2, data3, data4);
+        }
+    }
 
     //Method for subscribing to the game event
     public void AddListener(GameEventListener Listener)
