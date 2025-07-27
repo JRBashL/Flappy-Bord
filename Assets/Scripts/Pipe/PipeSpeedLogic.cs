@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine.Events;
 using System;
 using UnityEngine.UIElements;
+// Shorthanding the external script for the enums
+using PipeSpeedSOFSM = PipeSpeedStateSO.PipeSpeedFSM;
 
 public class PipeSpeedLogic : MonoBehaviour
 {
@@ -28,13 +30,11 @@ public class PipeSpeedLogic : MonoBehaviour
     private EaseFunc.Function _functionEase;
 
     // Declare enum for state and couroutines
-    private enum Speedstate { _enumRegularPipeSpeed, _enumBoostedPipeSpeed, _enumDecel, _enumStopSpeed };
-    private Speedstate _activeSpeedState;
+    [SerializeField] PipeSpeedStateSO _pipeSpeedStateSO;
     private Coroutine _stateCurrentCoroutine;
 
     void Awake()
     {
-        _activeSpeedState = Speedstate._enumRegularPipeSpeed;
 
         // If statement to initialze the pipe speed fields. Has a fallback in case the scriptable object to be assigned in the inspector
         // isn't placed.
@@ -65,7 +65,7 @@ public class PipeSpeedLogic : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StateRegularSpeedChanger();
+        StateChangerStop();
     }
 
     // Update is called once per frame
@@ -80,7 +80,6 @@ public class PipeSpeedLogic : MonoBehaviour
     private IEnumerator StateRegularSpeed()
     {
         Debug.Log("PipeSpeedLogic Regular Speed State Activated.");
-        _activeSpeedState = Speedstate._enumRegularPipeSpeed;
 
         PipePrefabScript.PipeSpeed = _regPipeSpeed;
 
@@ -92,13 +91,12 @@ public class PipeSpeedLogic : MonoBehaviour
             yield return new WaitForSeconds(5f);
             // Debug.Log("The PipeSpeed is now " + PipePrefabScript.PipeSpeed);
         }
-        while (_activeSpeedState == Speedstate._enumRegularPipeSpeed);
+        while (_pipeSpeedStateSO.PipeSpeedState == PipeSpeedSOFSM.RegularPipeSpeed);
     }
 
     private IEnumerator StateBoostSpeed()
     {
         Debug.Log("PipeSpeedLogic Boosted Speed State Activated");
-        _activeSpeedState = Speedstate._enumBoostedPipeSpeed;
 
         // Increase the pipe speed exponentially by 1 percent every frame until a max speed
         do
@@ -119,7 +117,6 @@ public class PipeSpeedLogic : MonoBehaviour
     private IEnumerator StateDecelSpeed()
     {
         Debug.Log("PipeSpeedLogic Entering decel speed state.");
-        _activeSpeedState = Speedstate._enumDecel;
 
         // Operation below will approximate an exponential decay using 4 time quadrants with 
         // and does it within the decel time duration
@@ -145,7 +142,7 @@ public class PipeSpeedLogic : MonoBehaviour
         yield return null;
     }
 
-    public void StateRegularSpeedChanger()
+    public void StateChangerRegularSpeed()
     {
         if (_stateCurrentCoroutine != null)
         {
@@ -153,6 +150,8 @@ public class PipeSpeedLogic : MonoBehaviour
         }
 
         _stateCurrentCoroutine = StartCoroutine(StateRegularSpeed());
+
+        _pipeSpeedStateSO.PipeSpeedState = PipeSpeedSOFSM.RegularPipeSpeed;
 
     }
 
@@ -164,6 +163,8 @@ public class PipeSpeedLogic : MonoBehaviour
         }
 
         _stateCurrentCoroutine = StartCoroutine(StateBoostSpeed());
+
+        _pipeSpeedStateSO.PipeSpeedState = PipeSpeedSOFSM.BoostedPipeSpeed;
     }
 
     public void StateChangerDecel()
@@ -175,9 +176,11 @@ public class PipeSpeedLogic : MonoBehaviour
         }
 
         _stateCurrentCoroutine = StartCoroutine(StateDecelSpeed());
+
+        _pipeSpeedStateSO.PipeSpeedState = PipeSpeedSOFSM.DecelPipeSpeed;
     }
-    
-        public void StateChangerStop()
+
+    public void StateChangerStop()
     {
 
         if (_stateCurrentCoroutine != null)
@@ -186,8 +189,10 @@ public class PipeSpeedLogic : MonoBehaviour
         }
 
         _stateCurrentCoroutine = StartCoroutine(StateStopSpeed());
+
+        _pipeSpeedStateSO.PipeSpeedState = PipeSpeedSOFSM.StopPipeSpeed;
     }
-    
+
 
 
 

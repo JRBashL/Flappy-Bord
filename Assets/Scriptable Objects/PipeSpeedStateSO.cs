@@ -12,6 +12,7 @@ public class PipeSpeedStateSO : ScriptableObject
         StopPipeSpeed
     };
 
+    [SerializeField]
     private PipeSpeedFSM _pipeSpeedState;
 
     // Property
@@ -57,7 +58,7 @@ public class PipeSpeedStateSO : ScriptableObject
         PipeSpeedState = PipeSpeedFSM.DecelPipeSpeed;
     }
     
-    public void StarStopSpeed()
+    public void StartStopSpeed()
     {
         PipeSpeedState = PipeSpeedFSM.StopPipeSpeed;
     }
