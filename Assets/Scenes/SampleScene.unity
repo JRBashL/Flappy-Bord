@@ -869,6 +869,54 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onEventTriggeredOneFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourString:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &801418207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -897,6 +945,54 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onEventTriggeredOneFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourString:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &801418208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -925,6 +1021,54 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onEventTriggeredOneFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourString:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,6 +1291,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1207491006}
   - component: {fileID: 1207491005}
+  - component: {fileID: 1207491010}
+  - component: {fileID: 1207491009}
+  - component: {fileID: 1207491008}
+  - component: {fileID: 1207491007}
+  - component: {fileID: 1207491011}
   m_Layer: 0
   m_Name: Pipe Spawn Logic
   m_TagString: Untagged
@@ -1170,12 +1319,15 @@ MonoBehaviour:
   _prefabPipes1: {fileID: 894366149903624380, guid: 9d6c9d2f2c504e44496a9535ae589955, type: 3}
   _prefabPipes2: {fileID: 2696344184131184171, guid: 01c81e3379fb0024fb2a4b2a96563b5a, type: 3}
   _prefabPipes3: {fileID: 853371266947797493, guid: 336d50d30b2f31648b1633a98b33d5bf, type: 3}
+  _pipeSpawnStateSO: {fileID: 11400000, guid: 174c0ca2eb69add48897abcdfb9adb2d, type: 2}
   _prefabPipes1SpawnRate: 10
   _prefabPipes2SpawnRate: 88
   _prefabPipes3SpawnRate: 2
-  _pipeSpeed: -15
   _pipeSpawnDistance: 150
-  _pipeSpawnTimer: 2.5
+  _pipeSpawnTimerRegularSpeed: 2.5
+  _pipeSpawnTimerSpeedBoost: 0.83
+  _maxYOffset: 18
+  _minYOffset: -5
   _laneGap: 12
 --- !u!4 &1207491006
 Transform:
@@ -1192,6 +1344,386 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1207491007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207491004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6faeb6429d28fa4bb11126e7a1f1229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameEvent: {fileID: 11400000, guid: 2d8823da1618eaa4dae80bdd0a477f65, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 174c0ca2eb69add48897abcdfb9adb2d, type: 2}
+        m_TargetAssemblyTypeName: PipeSpawnStateMachineSO, Assembly-CSharp
+        m_MethodName: StartSpeedBoostSpawnState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEventTriggeredOneFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourString:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1207491008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207491004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6faeb6429d28fa4bb11126e7a1f1229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameEvent: {fileID: 11400000, guid: 2649235963bb27f49b7979d922a897d3, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 174c0ca2eb69add48897abcdfb9adb2d, type: 2}
+        m_TargetAssemblyTypeName: PipeSpawnStateMachineSO, Assembly-CSharp
+        m_MethodName: StartRegularSpawnState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEventTriggeredOneFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourString:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1207491009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207491004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6faeb6429d28fa4bb11126e7a1f1229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameEvent: {fileID: 11400000, guid: dd916534374027b45b516de7286b12c0, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 174c0ca2eb69add48897abcdfb9adb2d, type: 2}
+        m_TargetAssemblyTypeName: PipeSpawnStateMachineSO, Assembly-CSharp
+        m_MethodName: StartNoSpawnState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEventTriggeredOneFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourString:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1207491010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207491004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6faeb6429d28fa4bb11126e7a1f1229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameEvent: {fileID: 11400000, guid: 4c91758d3e576c24f9b355722f7e10f9, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 174c0ca2eb69add48897abcdfb9adb2d, type: 2}
+        m_TargetAssemblyTypeName: PipeSpawnStateMachineSO, Assembly-CSharp
+        m_MethodName: StartRegularSpawnState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEventTriggeredOneFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourString:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1207491011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207491004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6faeb6429d28fa4bb11126e7a1f1229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameEvent: {fileID: 11400000, guid: b93f9d80dd40f834695225e14f7ec6fb, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 174c0ca2eb69add48897abcdfb9adb2d, type: 2}
+        m_TargetAssemblyTypeName: PipeSpawnStateMachineSO, Assembly-CSharp
+        m_MethodName: StartRegularSpawnState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEventTriggeredOneFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourString:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1279565988
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,6 +1912,54 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onEventTriggeredOneFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourString:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1970034322
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1645,6 +2225,54 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onEventTriggeredOneFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourString:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1266717198913297963
 Transform:
   m_ObjectHideFlags: 0
@@ -2013,6 +2641,14 @@ PrefabInstance:
     - target: {fileID: 6996511184221978906, guid: e9ceaba6a20d56c4795cc8458733206a, type: 3}
       propertyPath: m_Shadows.m_Type
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7031765780513208274, guid: e9ceaba6a20d56c4795cc8458733206a, type: 3}
+      propertyPath: onEventTriggeredFourFloat.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7031765780513208274, guid: e9ceaba6a20d56c4795cc8458733206a, type: 3}
+      propertyPath: onEventTriggeredFourFloat.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7951320921812841235, guid: e9ceaba6a20d56c4795cc8458733206a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2467,6 +3103,54 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onEventTriggeredOneFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourString:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7186323345365373674
 MonoBehaviour:
   m_ObjectHideFlags: 0

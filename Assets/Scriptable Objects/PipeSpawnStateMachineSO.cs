@@ -11,6 +11,7 @@ public class PipeSpawnStateMachineSO : ScriptableObject
         SpeedBoostSpawn
     }
 
+    [SerializeField]
     private PipeSpawnFSM _pipeSpawnState;
 
     public PipeSpawnFSM PipeSpawnState
@@ -33,5 +34,26 @@ public class PipeSpawnStateMachineSO : ScriptableObject
                 _pipeSpawnState = value;
             }
         }
+    }
+
+    void OnEnable()
+    {
+        _pipeSpawnState = PipeSpawnFSM.NoSpawn;
+    }
+
+    // State Change Methods for Events
+    public void StartNoSpawnState()
+    {
+        PipeSpawnState = PipeSpawnFSM.NoSpawn;
+    }
+
+    public void StartRegularSpawnState()
+    {
+        PipeSpawnState = PipeSpawnFSM.RegularSpeedSpawn;
+    }
+
+    public void StartSpeedBoostSpawnState()
+    {
+        PipeSpawnState = PipeSpawnFSM.SpeedBoostSpawn;
     }
 }
