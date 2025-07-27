@@ -9,7 +9,8 @@ public class PipeSpeedStateSO : ScriptableObject
         RegularPipeSpeed,
         BoostedPipeSpeed,
         DecelPipeSpeed,
-        StopPipeSpeed
+        StopPipeSpeed,
+        ZeroPipeSpeed
     };
 
     [SerializeField]
@@ -39,7 +40,7 @@ public class PipeSpeedStateSO : ScriptableObject
 
     void OnEnable()
     {
-        PipeSpeedState = PipeSpeedFSM.RegularPipeSpeed;
+        PipeSpeedState = PipeSpeedFSM.ZeroPipeSpeed;
     }
 
     // Methods for Events
@@ -57,10 +58,15 @@ public class PipeSpeedStateSO : ScriptableObject
     {
         PipeSpeedState = PipeSpeedFSM.DecelPipeSpeed;
     }
-    
+
     public void StartStopSpeed()
     {
         PipeSpeedState = PipeSpeedFSM.StopPipeSpeed;
+    }
+    
+    public void StartZeroSpeed()
+    {
+        PipeSpeedState = PipeSpeedFSM.ZeroPipeSpeed;
     }
 
 }

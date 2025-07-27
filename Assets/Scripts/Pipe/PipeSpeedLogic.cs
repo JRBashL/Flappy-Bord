@@ -16,6 +16,7 @@ public class PipeSpeedLogic : MonoBehaviour
     private PipeScriptableObject _pipeSpeedScriptableObject;
 
     // Declare pipe speeds and durations
+    [SerializeField]
     private float _regPipeSpeed, _pipeSpeedBoostMultiplier, _durationBoost, _durationDecel, _currentPipeSpeed, _increaseSpeedPerSecond;
 
     // Declare fallback speeds
@@ -26,8 +27,8 @@ public class PipeSpeedLogic : MonoBehaviour
     private const float _defaultIncreaseSpeedPerSecond = 0.05f;
 
     // Declare Easing Functions
-    private EaseFunc.Ease _enumEase;
-    private EaseFunc.Function _functionEase;
+    private EaseFunc.Ease _enumEaseOutQuint, _enumEaseLinear;
+    private EaseFunc.Function _functionEaseOutQuint, _functionLinear;
 
     // Declare enum for state and couroutines
     [SerializeField] PipeSpeedStateSO _pipeSpeedStateSO;
@@ -57,15 +58,17 @@ public class PipeSpeedLogic : MonoBehaviour
             _increaseSpeedPerSecond = _pipeSpeedScriptableObject.IncreasingSpeedPerSec;
         }
 
-        _enumEase = EaseFunc.Ease.EaseOutQuint;
-        _functionEase = EaseFunc.GetEasingFunction(_enumEase);
+        _enumEaseOutQuint = EaseFunc.Ease.EaseOutQuint;
+        _functionEaseOutQuint = EaseFunc.GetEasingFunction(_enumEaseOutQuint);
+        _enumEaseLinear = EaseFunc.Ease.Linear;
+        _functionLinear = EaseFunc.GetEasingFunction(_enumEaseInQuint);
 
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StateChangerStop();
+
     }
 
     // Update is called once per frame
@@ -126,9 +129,9 @@ public class PipeSpeedLogic : MonoBehaviour
         // Use EaseFunc Easing functions with normalized time (0 to 1) timecounter/_durationDecel is normalizing it 
         while (timecounter < _durationDecel)
         {
-            timecounter += Time.deltaTime;
             float t = Mathf.Clamp01(timecounter / _durationDecel);
-            PipePrefabScript.PipeSpeed = _functionEase(maxspeed, _regPipeSpeed, t);
+            PipePrefabScript.PipeSpeed = _functionEaseOutQuint(maxspeed, _regPipeSpeed, t);
+            timecounter += Time.deltaTime;
             yield return null;
         }
 
@@ -138,6 +141,25 @@ public class PipeSpeedLogic : MonoBehaviour
 
     private IEnumerator StateStopSpeed()
     {
+        Debug.Log("PipeSpeedLogic Entering stop speed state");
+        float timecounter = 0f;
+        float duration = 0.5f;
+
+        while (timecounter < duration)
+        {
+            // Goes from current speed to 0 speed in half a second. Normalized for Easefunc
+            float t = Mathf.Clamp01(timecounter / duration);
+            PipePrefabScript.PipeSpeed = _functionLinear(_regPipeSpeed, 0f, t);
+            timecounter += Time.deltaTime;
+            yield return null;
+        }
+
+        PipePrefabScript.PipeSpeed = 0f;
+    }
+
+    private IEnumerator StateZeroSpeed()
+    {
+        Debug.Log("PipeSpeedLogic Entering Zero Speed");
         PipePrefabScript.PipeSpeed = 0f;
         yield return null;
     }
@@ -191,6 +213,18 @@ public class PipeSpeedLogic : MonoBehaviour
         _stateCurrentCoroutine = StartCoroutine(StateStopSpeed());
 
         _pipeSpeedStateSO.PipeSpeedState = PipeSpeedSOFSM.StopPipeSpeed;
+    }
+
+    public void StateChangerZero()
+    {
+        if (_stateCurrentCoroutine != null)
+        {
+            StopCoroutine(_stateCurrentCoroutine);
+        }
+
+        _stateCurrentCoroutine = StartCoroutine(StateZeroSpeed());
+
+        _pipeSpeedStateSO.PipeSpeedState = PipeSpeedSOFSM.ZeroPipeSpeed;
     }
 
 
