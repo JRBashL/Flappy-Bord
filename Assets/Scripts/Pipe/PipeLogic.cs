@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using PipeSpawnSOFSM = PipeSpawnStateMachineSO.PipeSpawnFSM;
 
 public class PipeSpawnLogic : MonoBehaviour
 {
@@ -11,11 +12,9 @@ public class PipeSpawnLogic : MonoBehaviour
     #region Object Pool
 
         [Header("Object Pooling")]
+        [Space(5)]
         // Declare integer for pipe object pooling. The size of the pool can be determined in the inspector.
         [SerializeField] private int _pipePoolSize;
-
-        // Declare a list to get a reference for all of the objects in the pool
-        List<GameObject> _pipePoolList;
 
         // Declare GameObject prefabs that the pipes spawn from.        
         [SerializeField] private GameObject _prefabPipes1, _prefabPipes2, _prefabPipes3;
@@ -24,17 +23,27 @@ public class PipeSpawnLogic : MonoBehaviour
 
     #region Pipe Spawing 
 
-    // Declare the weights for each pipe prefab
-        [SerializeField] private float _prefabPipes1SpawnRate, _prefabPipes2SpawnRate, _prefabPipes3SpawnRate;
+        [Header("Pipe Spawning")]
+        [Space(5)]
 
+        // Get instance of state machine
+        [SerializeField] private PipeSpawnStateMachineSO _pipeSpawnStateSO;
+
+        [Space(5)]
+
+        // Declare the weights for each pipe prefab
+        [SerializeField] private float _prefabPipes1SpawnRate;
+        [SerializeField] private float _prefabPipes2SpawnRate;
+        [SerializeField] private float _prefabPipes3SpawnRate;
         // Declare how far away the pipes spawn from the player
         [SerializeField] private float _pipeSpawnDistance;
 
         // Declare the pipe spawn timer
-        [SerializeField] private float _pipeSpawnTimer;
+        [SerializeField] private float _pipeSpawnTimerRegularSpeed, _pipeSpawnTimerSpeedBoost;
+        private float _spawnTimerToUse;
 
         // Height variation for the pipe spawns
-        [SerializeField] private float _maxYOffset, _minYOffset;
+    [SerializeField] private float _maxYOffset, _minYOffset;
 
         // Declare the lane gap and declare an array for the lanes.
         [SerializeField] private int _laneGap;
@@ -60,9 +69,29 @@ public class PipeSpawnLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         _clock += Time.deltaTime;
 
-        if (_clock > _pipeSpawnTimer)
+        switch (_pipeSpawnStateSO.PipeSpawnState)
+        {
+
+            case PipeSpawnSOFSM.NoSpawn:
+
+                // No action for this state
+                break;
+
+            case PipeSpawnSOFSM.RegularSpeedSpawn:
+
+                _spawnTimerToUse = _pipeSpawnTimerRegularSpeed;
+                break;
+
+            case PipeSpawnSOFSM.SpeedBoostSpawn:
+
+                _spawnTimerToUse = _pipeSpawnTimerSpeedBoost;
+                break;
+        }
+
+        if (_pipeSpawnStateSO.PipeSpawnState != PipeSpawnSOFSM.NoSpawn && _clock > _spawnTimerToUse)
         {
             // Creates the variable height for the new set of pipes to spawn
             float yOffsetArray = Random.Range(_minYOffset, _maxYOffset);
@@ -79,7 +108,6 @@ public class PipeSpawnLogic : MonoBehaviour
             // Reset timer
             _clock = 0f;
         }
-
     }
     
     // Creates a pool of a configurable size and creates a list with a reference to each.
@@ -163,7 +191,6 @@ public class PipeSpawnLogic : MonoBehaviour
         return result;
     }
 
-    
     /// <summary>
     /// Teleports a pipe to a lane. There is an operation to check the list of gameobjects from the pool to see which is active. 
     /// Then creates a new list of 3
@@ -227,6 +254,6 @@ public class PipeSpawnLogic : MonoBehaviour
         }
     }
 
-
+    
 
 }
