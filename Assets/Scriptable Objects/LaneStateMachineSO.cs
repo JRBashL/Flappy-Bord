@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LaneStateMachine", menuName = "Scriptable Objects/LaneStateMachine")]
+[CreateAssetMenu(fileName = "LaneStateMachineSO", menuName = "Scriptable Objects/LaneStateMachine")]
 public class LaneStateMachineSO : ScriptableObject
 {
     [SerializeField]
