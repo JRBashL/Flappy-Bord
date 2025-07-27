@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "JumpStateMachine", menuName = "Scriptable Objects/JumpStateMachine")]
+[CreateAssetMenu(fileName = "JumpStateMachineSO", menuName = "Scriptable Objects/JumpStateMachine")]
 public class JumpStateMachineSO : ScriptableObject
 {
 

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "BordMainState", menuName = "Scriptable Objects/BordMainState")]
+[CreateAssetMenu(fileName = "BordMainStateSO", menuName = "Scriptable Objects/BordMainState")]
 public class BordStateMachineSO : ScriptableObject
 {
     [SerializeField]
