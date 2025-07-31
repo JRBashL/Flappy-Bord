@@ -950,6 +950,7 @@ GameObject:
   - component: {fileID: 4332460432173500467}
   - component: {fileID: 9139222711988096227}
   - component: {fileID: 113159810814502496}
+  - component: {fileID: 5793718720152075493}
   m_Layer: 0
   m_Name: Boost Collider
   m_TagString: Untagged
@@ -1085,6 +1086,82 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speedBooostTrigger: {fileID: 11400000, guid: 93583fd9e28296146bafdec27242553b, type: 2}
   _boostColliderState: {fileID: 11400000, guid: 6517ca35ca4af0240b4d7134d2b1f54b, type: 2}
+--- !u!114 &5793718720152075493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7734578278123727370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6faeb6429d28fa4bb11126e7a1f1229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameEvent: {fileID: 11400000, guid: dd916534374027b45b516de7286b12c0, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 6517ca35ca4af0240b4d7134d2b1f54b, type: 2}
+        m_TargetAssemblyTypeName: BoostColliderStateSO, Assembly-CSharp
+        m_MethodName: SetDeadState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEventTriggeredOneFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourString:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8610987529684302049
 GameObject:
   m_ObjectHideFlags: 0
