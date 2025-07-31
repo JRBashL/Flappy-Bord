@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1706637399058181237}
   - component: {fileID: 5508601561489407121}
   m_Layer: 0
-  m_Name: Pipe 1 Top Broken
+  m_Name: Pipe 3 Top Broken
   m_TagString: Pipes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 3524870204115999384}
   - component: {fileID: 2042439373315542058}
   m_Layer: 0
-  m_Name: Pipe 1 Bottom Broken
+  m_Name: Pipe 3 Bottom Broken
   m_TagString: Pipes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -522,7 +522,7 @@ GameObject:
   - component: {fileID: 1596469015180593485}
   - component: {fileID: 7732742666462838375}
   m_Layer: 0
-  m_Name: Pipe 1 Bottom Base
+  m_Name: Pipe 3 Bottom Base
   m_TagString: Pipes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -748,7 +748,7 @@ GameObject:
   - component: {fileID: 4737581627411072126}
   - component: {fileID: 3325395424366564737}
   m_Layer: 0
-  m_Name: Pipe 1 Top Base
+  m_Name: Pipe 3 Top Base
   m_TagString: Pipes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
