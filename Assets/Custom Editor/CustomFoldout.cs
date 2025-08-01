@@ -1,6 +1,12 @@
-using UnityEngine;
+using UnityEditor;
+using UnityEditor.UIElements;
+using UnityEngine.UIElements;
 
-public class CustomFoldout
+[CustomPropertyDrawer(typeof(GameEventListener))]
+public class GameEventListenerDrawer : PropertyDrawer
 {
-    
+    public override VisualElement CreatePropertyGUI(SerializedProperty property)
+    {
+        return base.CreatePropertyGUI(property);
+    }
 }
