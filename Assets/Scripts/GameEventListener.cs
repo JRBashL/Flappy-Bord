@@ -9,10 +9,12 @@ public class GameEventListener : MonoBehaviour
 
     // No param
     [Header("Static Call Events")]
+    [Space(10)]
     public UnityEvent onEventTriggered;
 
     // 1 param
     [Header("One Param Dynamic Call Events")]
+    [Space(10)]
     public UnityEvent<float> onEventTriggeredOneFloat;
     public UnityEvent<int> onEventTriggeredOneInt;
     public UnityEvent<bool> onEventTriggeredOneBool;
@@ -20,6 +22,7 @@ public class GameEventListener : MonoBehaviour
 
     // 2 params
     [Header("Two Params Dynamic Call Events")]
+    [Space(10)]
     public UnityEvent<float, float> onEventTriggeredTwoFloat;
     public UnityEvent<int, int> onEventTriggeredTwoInt;
     public UnityEvent<bool, bool> onEventTriggeredTwoBool;
@@ -27,6 +30,7 @@ public class GameEventListener : MonoBehaviour
 
     // 3 params
     [Header("Three Params Dynamic Call Events")]
+    [Space(10)]
     public UnityEvent<float, float, float> onEventTriggeredThreeFloat;
     public UnityEvent<int, int, int> onEventTriggeredThreeInt;
     public UnityEvent<bool, bool, bool> onEventTriggeredThreeBool;
@@ -34,6 +38,7 @@ public class GameEventListener : MonoBehaviour
 
     // 4 params
     [Header("Four Params Dynamic Call Events")]
+    [Space(10)]
     public UnityEvent<float, float, float, float> onEventTriggeredFourFloat;
     public UnityEvent<int, int, int, int> onEventTriggeredFourInt;
     public UnityEvent<bool, bool, bool, bool> onEventTriggeredFourBool;
