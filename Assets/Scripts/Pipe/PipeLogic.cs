@@ -105,8 +105,12 @@ public class PipeSpawnLogic : MonoBehaviour
                 // speedboost timer if the speed is exactly the speedboost, and spawn timer is the same as the regular
                 // timer if the speed is exactly the regularspeed. Linear interpolation in between the two values.
                 float maxspeed = PipeSO.RegularPipeSpeed * PipeSO.BoostPipeSpeedMultiplier;
-                float timercounter = Mathf.Clamp01((PipeSpeed.Value - maxspeed) / (PipeSO.RegularPipeSpeed - maxspeed));
-                _spawnTimerToUse = Mathf.InverseLerp(_pipeSpawnTimerSpeedBoost, _pipeSpawnTimerRegularSpeed, timercounter);
+                float timercounter = Mathf.InverseLerp(maxspeed, PipeSO.RegularPipeSpeed, PipeSpeed.Value);
+                _spawnTimerToUse = Mathf.Lerp(_pipeSpawnTimerSpeedBoost, _pipeSpawnTimerRegularSpeed, timercounter);
+               // Debug.LogWarning("timercounter is " + timercounter);
+               // Debug.LogWarning("_spawnTimerToUse is " + _spawnTimerToUse);
+                //Debug.LogWarning("_clock is " + _clock);
+               // _spawnTimerToUse = 2f;
                 break;
         }
 
