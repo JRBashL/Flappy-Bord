@@ -10,10 +10,13 @@ public class PipeSpeedLogic : MonoBehaviour
 {
 
     // Declare the Scriptable Object that holds the data for the pipe speeds
-
     [SerializeField]
     [Tooltip("Place PipeSpeedScriptableObject here that contains the pipe speeds. Use it to configure regular and boosted speeds.")]
     private PipeScriptableObject _pipeSpeedScriptableObject;
+
+    // Add the float variable
+    [SerializeField]
+    private FloatVariable PipeSpeed;
 
     // Declare pipe speeds and durations
     [SerializeField]
@@ -84,13 +87,13 @@ public class PipeSpeedLogic : MonoBehaviour
     {
         Debug.Log("PipeSpeedLogic Regular Speed State Activated.");
 
-        PipePrefabScript.PipeSpeed = _regPipeSpeed;
+        PipeSpeed.Value = _regPipeSpeed;
 
         // Speed constantly increases
         do
         {
             _regPipeSpeed += _increaseSpeedPerSecond;
-            PipePrefabScript.PipeSpeed = _regPipeSpeed;
+            PipeSpeed.Value = _regPipeSpeed;
             yield return new WaitForSeconds(5f);
             // Debug.Log("The PipeSpeed is now " + PipePrefabScript.PipeSpeed);
         }
@@ -104,16 +107,16 @@ public class PipeSpeedLogic : MonoBehaviour
         // Increase the pipe speed exponentially by 1 percent every frame until a max speed
         do
         {
-            PipePrefabScript.PipeSpeed += PipePrefabScript.PipeSpeed * 0.01f;
+            PipeSpeed.Value += PipeSpeed.Value * 0.01f;
             // Debug.Log("The PipeSpeed is " + PipePrefabScript.PipeSpeed);
             yield return null;
         }
-        while (PipePrefabScript.PipeSpeed > _regPipeSpeed * _pipeSpeedBoostMultiplier);
+        while (PipeSpeed.Value > _regPipeSpeed * _pipeSpeedBoostMultiplier);
 
         Debug.Log("PipeSpeedLogic Entering max boost speed");
 
         // Sets the pipespeed to the actual value after acceleration
-        PipePrefabScript.PipeSpeed = _regPipeSpeed * _pipeSpeedBoostMultiplier;
+        PipeSpeed.Value = _regPipeSpeed * _pipeSpeedBoostMultiplier;
 
     }
 
@@ -130,13 +133,13 @@ public class PipeSpeedLogic : MonoBehaviour
         while (timecounter < _durationDecel)
         {
             float t = Mathf.Clamp01(timecounter / _durationDecel);
-            PipePrefabScript.PipeSpeed = _functionEaseOutQuint(maxspeed, _regPipeSpeed, t);
+            PipeSpeed.Value = _functionEaseOutQuint(maxspeed, _regPipeSpeed, t);
             timecounter += Time.deltaTime;
             yield return null;
         }
 
         //At the end make sure to set the actual speed
-        PipePrefabScript.PipeSpeed = _regPipeSpeed;
+        PipeSpeed.Value = _regPipeSpeed;
     }
 
     private IEnumerator StateStopSpeed()
@@ -149,18 +152,18 @@ public class PipeSpeedLogic : MonoBehaviour
         {
             // Goes from current speed to 0 speed in half a second. Normalized for Easefunc
             float t = Mathf.Clamp01(timecounter / duration);
-            PipePrefabScript.PipeSpeed = _functionLinear(_regPipeSpeed, 0f, t);
+            PipeSpeed.Value = _functionLinear(_regPipeSpeed, 0f, t);
             timecounter += Time.deltaTime;
             yield return null;
         }
 
-        PipePrefabScript.PipeSpeed = 0f;
+        PipeSpeed.Value = 0f;
     }
 
     private IEnumerator StateZeroSpeed()
     {
         Debug.Log("PipeSpeedLogic Entering Zero Speed");
-        PipePrefabScript.PipeSpeed = 0f;
+        PipeSpeed.Value = 0f;
         yield return null;
     }
 
