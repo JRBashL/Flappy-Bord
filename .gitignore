@@ -13,6 +13,7 @@
 *.sln
 *.user
 *.suo
+*.dwlt
 
 # OS junk
 .DS_Store
