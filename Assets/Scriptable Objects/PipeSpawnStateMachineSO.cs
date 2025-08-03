@@ -7,6 +7,7 @@ public class PipeSpawnStateMachineSO : ScriptableObject
     public enum PipeSpawnFSM
     {
         NoSpawn,
+        AccelPipeSpawn,
         RegularSpeedSpawn,
         SpeedBoostSpawn,
         DecelSpawn
@@ -46,6 +47,11 @@ public class PipeSpawnStateMachineSO : ScriptableObject
     public void StartNoSpawnState()
     {
         PipeSpawnState = PipeSpawnFSM.NoSpawn;
+    }
+
+    public void StartAccelSpawnState()
+    {
+        PipeSpawnState = PipeSpawnFSM.AccelPipeSpawn;
     }
 
     public void StartRegularSpawnState()

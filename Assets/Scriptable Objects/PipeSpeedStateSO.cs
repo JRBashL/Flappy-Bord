@@ -7,6 +7,7 @@ public class PipeSpeedStateSO : ScriptableObject
     public enum PipeSpeedFSM
     {
         RegularPipeSpeed,
+        AccelPipeSpeed,
         BoostedPipeSpeed,
         DecelPipeSpeed,
         StopPipeSpeed,
@@ -47,6 +48,11 @@ public class PipeSpeedStateSO : ScriptableObject
     public void StartRegularSpeed()
     {
         PipeSpeedState = PipeSpeedFSM.RegularPipeSpeed;
+    }
+
+    public void StartAccelSpeed()
+    {
+        PipeSpeedState = PipeSpeedFSM.AccelPipeSpeed;
     }
 
     public void StartBoostSpeed()
