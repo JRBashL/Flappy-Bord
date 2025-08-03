@@ -6,10 +6,14 @@ using BoostColliderSOFSM = BoostColliderStateSO.BoostColliderFSM;
 public class BrokenBoostCollider : MonoBehaviour
 {
     [SerializeField]
+    private FloatVariable PipeSpeed;
+
+    [SerializeField]
     public GameEvent _speedBooostTrigger;
 
     [SerializeField]
     private BoostColliderStateSO _boostColliderState;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,7 +24,7 @@ public class BrokenBoostCollider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(0, 0, PipePrefabScript.PipeSpeed * Time.deltaTime);
+        transform.Translate(0, 0, PipeSpeed.Value * Time.deltaTime);
     }
 
     void OnTriggerEnter(Collider other)
