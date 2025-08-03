@@ -43,7 +43,7 @@ public class PipeSpawnLogic : MonoBehaviour
         private float _spawnTimerToUse;
 
         // Height variation for the pipe spawns
-    [SerializeField] private float _maxYOffset, _minYOffset;
+        [SerializeField] private float _maxYOffset, _minYOffset;
 
         // Declare the lane gap and declare an array for the lanes.
         [SerializeField] private int _laneGap;
@@ -55,7 +55,16 @@ public class PipeSpawnLogic : MonoBehaviour
         // clock for the timer 
         private float _clock;
 
-        #endregion
+    #endregion
+        
+    #region Scriptable Objects Reference
+
+        [SerializeField]
+        private FloatVariable PipeSpeed;
+        [SerializeField]
+        private PipeScriptableObject PipeSO;
+
+    #endregion
 
     void Awake()
     {
@@ -88,6 +97,16 @@ public class PipeSpawnLogic : MonoBehaviour
             case PipeSpawnSOFSM.SpeedBoostSpawn:
 
                 _spawnTimerToUse = _pipeSpawnTimerSpeedBoost;
+                break;
+
+            case PipeSpawnSOFSM.DecelSpawn:
+
+                // create a lerp to dynamically change the timer according to the PipeSpeed. Spawn timer is the same as
+                // speedboost timer if the speed is exactly the speedboost, and spawn timer is the same as the regular
+                // timer if the speed is exactly the regularspeed. Linear interpolation in between the two values.
+                float maxspeed = PipeSO.RegularPipeSpeed * PipeSO.BoostPipeSpeedMultiplier;
+                float timercounter = Mathf.Clamp01((PipeSpeed.Value - maxspeed) / (PipeSO.RegularPipeSpeed - maxspeed));
+                _spawnTimerToUse = Mathf.InverseLerp(_pipeSpawnTimerSpeedBoost, _pipeSpawnTimerRegularSpeed, timercounter);
                 break;
         }
 

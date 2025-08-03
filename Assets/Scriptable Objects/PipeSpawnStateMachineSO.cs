@@ -8,7 +8,8 @@ public class PipeSpawnStateMachineSO : ScriptableObject
     {
         NoSpawn,
         RegularSpeedSpawn,
-        SpeedBoostSpawn
+        SpeedBoostSpawn,
+        DecelSpawn
     }
 
     [SerializeField]
@@ -55,5 +56,10 @@ public class PipeSpawnStateMachineSO : ScriptableObject
     public void StartSpeedBoostSpawnState()
     {
         PipeSpawnState = PipeSpawnFSM.SpeedBoostSpawn;
+    }
+
+    public void StartDecelSpawnState()
+    {
+        PipeSpawnState = PipeSpawnFSM.DecelSpawn;
     }
 }
