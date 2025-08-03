@@ -60,10 +60,20 @@ public class GameManager : MonoBehaviour
         yield return null;
     }
 
+    /// <summary>
+    /// Method to be invoked by Jump Script on the first jump after starting the game
+    /// </summary>
+    public void FirstJump()
+    {
+        _bordStateMachineSO.BordMainState = BordStateMachineSOFSM.BeginState;
+
+        //_bordStateSO.BordMainState = BordStateSOFSM.RegularSpeedState;
+       
+    }
 
 
 
-
+/*
 
 
 
@@ -114,4 +124,6 @@ public class GameManager : MonoBehaviour
         if (pipeSpeedLogic != null)
             pipeSpeedLogic.StateChangerRegularSpeed();
     }
+
+    */
 }
