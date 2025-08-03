@@ -7,7 +7,8 @@ public class PipePrefabScript : MonoBehaviour
 {
 
     //PipeSpeed is going to be shared to all instances of the pipe in the game therefore it is public static
-    public static float PipeSpeed;
+    [SerializeField]
+    private FloatVariable PipeSpeed;
 
     private GameObject _pipeGameObject;
 
@@ -44,7 +45,7 @@ public class PipePrefabScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(0, 0, PipeSpeed * Time.deltaTime);
+        transform.Translate(0, 0, PipeSpeed.Value * Time.deltaTime);
 
     }
 

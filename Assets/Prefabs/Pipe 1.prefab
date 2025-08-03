@@ -108,6 +108,54 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onEventTriggeredOneFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourString:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4581453606339500797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +184,54 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onEventTriggeredOneFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredOneString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredTwoString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredThreeString:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourInt:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourBool:
+    m_PersistentCalls:
+      m_Calls: []
+  onEventTriggeredFourString:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1141577558992550715
 GameObject:
   m_ObjectHideFlags: 0
