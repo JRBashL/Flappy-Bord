@@ -18,6 +18,9 @@ public class Jump_Script : MonoBehaviour
     [SerializeField] private BordStateMachineSO _bordStateSO;
     [SerializeField] private JumpStateMachineSO _jumpStateSO;
 
+    // GameEvent to GameManager on the first jump after starting the game
+    [SerializeField] private GameEvent _firstJump;
+
     private Coroutine _jumpCoroutine;
 
     void Awake()
@@ -86,8 +89,8 @@ public class Jump_Script : MonoBehaviour
         {
             case BordStateSOFSM.BeginState:
 
-                //Set the enum of the SO FSM
-                _bordStateSO.BordMainState = BordStateSOFSM.RegularSpeedState;
+                // Send GameEvent to GameManager
+                _firstJump.TriggerEvent();
                 _jumpStateSO.JumpState = JumpStateSOFSM.RegularSpeedJumping;
                 StopJumpCoroutine();
                 _jumpCoroutine = StartCoroutine(Jump());
