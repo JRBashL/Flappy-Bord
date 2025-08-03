@@ -5,6 +5,9 @@ using UnityEngine.UIElements;
 [CustomEditor(typeof(GameEventListener))]
 public class GameEventListenerInspector: Editor
 {
+    // Game Event Property
+    SerializedProperty propGameEvent;
+
     //Group Zero - Static Call Event
     SerializedProperty propOnEventTriggered;
 
@@ -27,6 +30,8 @@ public class GameEventListenerInspector: Editor
     void OnEnable()
     {
         // I need to get the serialized properties from the object
+        propGameEvent = serializedObject.FindProperty("GameEvent");
+
         propOnEventTriggered = serializedObject.FindProperty("onEventTriggered"); 
 
         propOnEventTriggeredOneFloat  = serializedObject.FindProperty("onEventTriggeredOneFloat");
@@ -63,6 +68,8 @@ public class GameEventListenerInspector: Editor
         // SerializedObject objgameEventListener = serializedObject.FindProperty("GameEventListener")
 
         // I need to initialize property fields with these serialized properties
+        PropertyField fieldGameEvent = new PropertyField(propGameEvent);
+
         PropertyField fieldOnEventTriggered = new PropertyField(propOnEventTriggered);
 
         PropertyField fieldOnEventTriggeredOneFloat = new PropertyField(propOnEventTriggeredOneFloat);
@@ -124,6 +131,7 @@ public class GameEventListenerInspector: Editor
         fourParamFO.Add(fieldOnEventTriggeredFourString);
 
         //Add to the UI heirarchy
+        rootInspector.Add(fieldGameEvent);
 
         rootInspector.Add(fieldOnEventTriggered);
 
