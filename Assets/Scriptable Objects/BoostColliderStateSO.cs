@@ -33,13 +33,6 @@ public class BoostColliderStateSO : ScriptableObject
         }
     }
 
-
-    // Set default starting value
-    void OnEnable()
-    {
-        BoostColliderState = BoostColliderFSM.AliveState;
-    }
-
     // Methods for Events
     public void SetAliveState()
     {

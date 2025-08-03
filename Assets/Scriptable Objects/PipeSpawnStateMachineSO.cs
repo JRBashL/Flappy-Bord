@@ -38,11 +38,6 @@ public class PipeSpawnStateMachineSO : ScriptableObject
         }
     }
 
-    void OnEnable()
-    {
-        _pipeSpawnState = PipeSpawnFSM.NoSpawn;
-    }
-
     // State Change Methods for Events
     public void StartNoSpawnState()
     {

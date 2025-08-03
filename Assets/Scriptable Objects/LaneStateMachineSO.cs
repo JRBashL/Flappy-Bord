@@ -65,12 +65,4 @@ public class LaneStateMachineSO : ScriptableObject
             }
         }
     }
-
-    // Set default starting value.
-    void OnEnable()
-    {
-        _laneChangeState = LaneChangeFSM.OnLane;
-        _currentLaneState = CurrentLaneFSM.Center;
-    }
-
 }
