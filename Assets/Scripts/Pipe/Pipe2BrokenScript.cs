@@ -5,6 +5,9 @@ using UnityEngine;
 public class Pipe2BrokenScript : MonoBehaviour
 {
 
+    [SerializeField]
+    private FloatVariable PipeSpeed;
+
     private Rigidbody _rb;
     private CapsuleCollider _ownCollider;
     private Vector3 _collisionLocation;
@@ -47,7 +50,7 @@ public class Pipe2BrokenScript : MonoBehaviour
     {
         if (!_ishit)
         {
-            transform.Translate(0, 0, PipePrefabScript.PipeSpeed * Time.deltaTime);
+            transform.Translate(0, 0, PipeSpeed.Value * Time.deltaTime);
         }
 
     }
