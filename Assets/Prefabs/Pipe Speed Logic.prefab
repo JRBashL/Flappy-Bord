@@ -50,6 +50,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pipeSpeedScriptableObject: {fileID: 11400000, guid: f6646ccfa39902b4f9248aadd4581c3e, type: 2}
+  PipeSpeed: {fileID: 11400000, guid: 4d0ee0d50d1627040a4a9daee9bc4336, type: 2}
+  _regPipeSpeed: -15
+  _pipeSpeedBoostMultiplier: 3
+  _durationBoost: 5
+  _durationDecel: 2
+  _currentPipeSpeed: 0
+  _increaseSpeedPerSecond: 0.1
   _pipeSpeedStateSO: {fileID: 11400000, guid: 52b9a944be8566441b4997c638c9da54, type: 2}
 --- !u!114 &5180907384463166732
 MonoBehaviour:

@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba35eab2e108e84d942febf2636ab47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PipeSpeed: {fileID: 11400000, guid: 4d0ee0d50d1627040a4a9daee9bc4336, type: 2}
   _disappearTime: 1
   _waitForDisappearTime: 2
 --- !u!1 &5580852737948805791
@@ -356,6 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba35eab2e108e84d942febf2636ab47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PipeSpeed: {fileID: 11400000, guid: 4d0ee0d50d1627040a4a9daee9bc4336, type: 2}
   _disappearTime: 1
   _waitForDisappearTime: 2
 --- !u!1 &5805189430242962703
@@ -556,6 +558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b0d0f28e03ea174d8299ec89a700554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PipeSpeed: {fileID: 11400000, guid: 4d0ee0d50d1627040a4a9daee9bc4336, type: 2}
 --- !u!54 &2550167607228420868
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -733,6 +736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b0d0f28e03ea174d8299ec89a700554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PipeSpeed: {fileID: 11400000, guid: 4d0ee0d50d1627040a4a9daee9bc4336, type: 2}
 --- !u!54 &5407315096327333734
 Rigidbody:
   m_ObjectHideFlags: 0

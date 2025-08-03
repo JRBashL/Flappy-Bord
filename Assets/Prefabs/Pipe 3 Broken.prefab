@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba35eab2e108e84d942febf2636ab47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PipeSpeed: {fileID: 11400000, guid: 4d0ee0d50d1627040a4a9daee9bc4336, type: 2}
   _disappearTime: 1
   _waitForDisappearTime: 2
 --- !u!1 &1376786367085184182
@@ -356,6 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba35eab2e108e84d942febf2636ab47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PipeSpeed: {fileID: 11400000, guid: 4d0ee0d50d1627040a4a9daee9bc4336, type: 2}
   _disappearTime: 1
   _waitForDisappearTime: 2
 --- !u!1 &1614912751905045174
@@ -506,6 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bcbb6029a4390046bd064e8642c8899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PipeSpeed: {fileID: 11400000, guid: 4d0ee0d50d1627040a4a9daee9bc4336, type: 2}
   _speedBooostTrigger: {fileID: 11400000, guid: 93583fd9e28296146bafdec27242553b, type: 2}
   _boostColliderState: {fileID: 11400000, guid: 6517ca35ca4af0240b4d7134d2b1f54b, type: 2}
 --- !u!54 &5855105155288592740
@@ -685,6 +688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b0d0f28e03ea174d8299ec89a700554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PipeSpeed: {fileID: 11400000, guid: 4d0ee0d50d1627040a4a9daee9bc4336, type: 2}
 --- !u!54 &7732742666462838375
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -911,6 +915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b0d0f28e03ea174d8299ec89a700554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PipeSpeed: {fileID: 11400000, guid: 4d0ee0d50d1627040a4a9daee9bc4336, type: 2}
 --- !u!54 &3325395424366564737
 Rigidbody:
   m_ObjectHideFlags: 0

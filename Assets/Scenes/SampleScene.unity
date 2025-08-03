@@ -2526,9 +2526,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd8eeab72be0a8478be3eebbbb44b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pipe1broken: {fileID: 0}
-  _pipe2broken: {fileID: 0}
-  _pipe3broken: {fileID: 0}
+  PipeSpeed: {fileID: 11400000, guid: 4d0ee0d50d1627040a4a9daee9bc4336, type: 2}
+  _pipe1broken: {fileID: 894366149903624380, guid: 9d6c9d2f2c504e44496a9535ae589955, type: 3}
+  _pipe2broken: {fileID: 2696344184131184171, guid: 01c81e3379fb0024fb2a4b2a96563b5a, type: 3}
+  _pipe3broken: {fileID: 853371266947797493, guid: 336d50d30b2f31648b1633a98b33d5bf, type: 3}
 --- !u!4 &7357936319472481466
 Transform:
   m_ObjectHideFlags: 0

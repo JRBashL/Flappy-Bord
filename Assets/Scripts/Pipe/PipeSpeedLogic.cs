@@ -20,7 +20,7 @@ public class PipeSpeedLogic : MonoBehaviour
 
     // Declare pipe speeds and durations
     [SerializeField]
-    private float _regPipeSpeed, _pipeSpeedBoostMultiplier, _durationBoost, _durationDecel, _currentPipeSpeed, _increaseSpeedPerSecond;
+    private float _regPipeSpeed, _pipeSpeedBoostMultiplier, _durationBoost, _durationDecel, _increaseSpeedPerSecond;
 
     // Declare fallback speeds
     private const float _pipeSpeedDefault = -15f;
