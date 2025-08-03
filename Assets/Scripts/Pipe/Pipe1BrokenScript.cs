@@ -11,6 +11,9 @@ public class Pipe1BrokenScript : MonoBehaviour
     private bool _ishit;
 
     [SerializeField]
+    private FloatVariable PipeSpeed;
+
+    [SerializeField]
     private float _disappearTime, _waitForDisappearTime;
 
     // Declare easing functions
@@ -47,7 +50,7 @@ public class Pipe1BrokenScript : MonoBehaviour
     {
         if (!_ishit)
         {
-            transform.Translate(0, 0, PipePrefabScript.PipeSpeed * Time.deltaTime);
+            transform.Translate(0, 0, PipeSpeed.Value * Time.deltaTime);
         }
 
     }
