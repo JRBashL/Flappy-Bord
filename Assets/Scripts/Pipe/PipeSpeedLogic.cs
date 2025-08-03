@@ -16,23 +16,28 @@ public class PipeSpeedLogic : MonoBehaviour
     private FloatVariable PipeSpeed;
 
     // Declare pipe speeds and durations
-    [SerializeField]
-    private float _regPipeSpeed, _pipeSpeedBoostMultiplier, _durationBoost, _durationDecel, _increaseSpeedPerSecond;
+    private float _regPipeSpeed, _pipeSpeedBoostMultiplier, _durationAccel, _durationBoost,
+        _durationDecel, _increaseSpeedPerSecond;
 
     // Declare fallback speeds
     private float _pipeSpeedDefault = -15f;
     private float _pipeSpeedBoostMultiplierDefault = 3;
-    private float _duartionBoostDefault = 5f;
+    private float _durationAccelDefault = 1f;
+    private float _durationBoostDefault = 5f;
     private float _durationDecelDefault = 2f;
     private float _defaultIncreaseSpeedPerSecond = 0.05f;
 
     // Declare Easing Functions
-    private EaseFunc.Ease _enumEaseOutQuint, _enumEaseLinear;
-    private EaseFunc.Function _functionEaseOutQuint, _functionLinear;
+    private EaseFunc.Ease _enumEaseOutQuint, _enumEaseLinear, _enumEaseInExpo;
+    private EaseFunc.Function _functionEaseOutQuint, _functionLinear, _functionEaseInExpo;
 
     // Declare enum for state and couroutines
     [SerializeField] PipeSpeedStateSO _pipeSpeedStateSO;
     private Coroutine _stateCurrentCoroutine;
+
+    // Declare GameEvents
+    [SerializeField]
+    private GameEvent _accelEvent, _speedBoostEvent, _regularSpeedEvent, _decelEvent;
 
     void Awake()
     {
@@ -45,7 +50,8 @@ public class PipeSpeedLogic : MonoBehaviour
             Debug.LogWarning("Setting fallback values.");
             _regPipeSpeed = _pipeSpeedDefault;
             _pipeSpeedBoostMultiplier = _pipeSpeedBoostMultiplierDefault;
-            _durationBoost = _duartionBoostDefault;
+            _durationAccel = _durationAccelDefault;
+            _durationBoost = _durationBoostDefault;
             _durationDecel = _durationDecelDefault;
             _increaseSpeedPerSecond = _defaultIncreaseSpeedPerSecond;
         }
@@ -53,6 +59,7 @@ public class PipeSpeedLogic : MonoBehaviour
         {
             _regPipeSpeed = _pipeSpeedScriptableObject.RegularPipeSpeed;
             _pipeSpeedBoostMultiplier = _pipeSpeedScriptableObject.BoostPipeSpeedMultiplier;
+            _durationAccel = _pipeSpeedScriptableObject.AccelDuration;
             _durationBoost = _pipeSpeedScriptableObject.BoostDuration;
             _durationDecel = _pipeSpeedScriptableObject.DecelDuration;
             _increaseSpeedPerSecond = _pipeSpeedScriptableObject.IncreasingSpeedPerSec;
@@ -62,6 +69,8 @@ public class PipeSpeedLogic : MonoBehaviour
         _functionEaseOutQuint = EaseFunc.GetEasingFunction(_enumEaseOutQuint);
         _enumEaseLinear = EaseFunc.Ease.Linear;
         _functionLinear = EaseFunc.GetEasingFunction(_enumEaseLinear);
+        _enumEaseInExpo = EaseFunc.Ease.EaseInExpo;
+        _functionEaseInExpo = EaseFunc.GetEasingFunction(_enumEaseInExpo);
 
     }
 
@@ -101,23 +110,39 @@ public class PipeSpeedLogic : MonoBehaviour
     {
         Debug.Log("PipeSpeedLogic Accel Speed State Activated");
 
-        // Increase the pipe speed exponentially by 1 percent every frame until a max speed
+        // Increase the pipe speed exponentially by Easefunc until a max speed within the accel duration
+
+        float timer = 0f;
+        float startSpeed = PipeSpeed.Value;
+        float maxSpeed = _regPipeSpeed * _pipeSpeedBoostMultiplier;
+
         do
         {
-            PipeSpeed.Value += PipeSpeed.Value * 0.01f;
-            // Debug.Log("The PipeSpeed is " + PipePrefabScript.PipeSpeed);
+            float t = timer / _durationAccel;
+            PipeSpeed.Value = _functionEaseInExpo(startSpeed, maxSpeed, t);
+            timer += Time.deltaTime;
             yield return null;
         }
-        while (PipeSpeed.Value < _regPipeSpeed * _pipeSpeedBoostMultiplier);
+        while (PipeSpeed.Value < maxSpeed);
+
+        StateChangerBoostSpeed();
     }
 
     private IEnumerator StateBoostSpeed()
     {
         Debug.Log("PipeSpeedLogic Entering max boost speed");
 
+        float timer = 0f;
         // Sets the pipespeed to the actual value after acceleration
         PipeSpeed.Value = _regPipeSpeed * _pipeSpeedBoostMultiplier;
-        yield return null;
+
+        while (timer < _durationBoost)
+        {
+            yield return null;
+            timer += Time.deltaTime;
+        }
+
+        StateChangerDecel();
 
     }
 
@@ -139,8 +164,8 @@ public class PipeSpeedLogic : MonoBehaviour
             yield return null;
         }
 
-        //At the end make sure to set the actual speed
-        PipeSpeed.Value = _regPipeSpeed;
+        StateChangerRegularSpeed();
+        
     }
 
     private IEnumerator StateStopSpeed()
@@ -179,6 +204,8 @@ public class PipeSpeedLogic : MonoBehaviour
 
         _pipeSpeedStateSO.PipeSpeedState = PipeSpeedSOFSM.RegularPipeSpeed;
 
+        _regularSpeedEvent.TriggerEvent();
+
     }
 
     public void StateChangerAccelSpeed()
@@ -191,6 +218,8 @@ public class PipeSpeedLogic : MonoBehaviour
         _stateCurrentCoroutine = StartCoroutine(StateAccelSpeed());
 
         _pipeSpeedStateSO.PipeSpeedState = PipeSpeedSOFSM.AccelPipeSpeed;
+
+        _accelEvent.TriggerEvent();
     }
 
 
@@ -204,6 +233,8 @@ public class PipeSpeedLogic : MonoBehaviour
         _stateCurrentCoroutine = StartCoroutine(StateBoostSpeed());
 
         _pipeSpeedStateSO.PipeSpeedState = PipeSpeedSOFSM.BoostedPipeSpeed;
+
+        _speedBoostEvent.TriggerEvent();
     }
 
     public void StateChangerDecel()
@@ -217,6 +248,8 @@ public class PipeSpeedLogic : MonoBehaviour
         _stateCurrentCoroutine = StartCoroutine(StateDecelSpeed());
 
         _pipeSpeedStateSO.PipeSpeedState = PipeSpeedSOFSM.DecelPipeSpeed;
+
+        _decelEvent.TriggerEvent();
     }
 
     public void StateChangerStop()

@@ -22,6 +22,14 @@ public class PipeScriptableObject : ScriptableObject
     }
 
     [SerializeField]
+    private float _accelDuration;
+    public float AccelDuration
+    {
+        get { return _accelDuration; }
+        private set { _accelDuration = value; }
+    }
+    
+    [SerializeField]
     private float _boostDuration;
     public float BoostDuration
     {
