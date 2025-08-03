@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BoostColliderManager : MonoBehaviour
 {
-
+/*
     [SerializeField]
     [Tooltip("Place PipeSpeedScriptableObject here that contains the pipe speeds and durations. Use it to configure regular and boosted speeds.")]
     private PipeScriptableObject _pipeSpeedSO;
@@ -17,13 +17,13 @@ public class BoostColliderManager : MonoBehaviour
     private const float _defaultDecelDuration = 2f;
 
     [SerializeField]
-    private GameEvent _speedBoostEvent, _regularSpeedEvent, _decelEvent;
+    private GameEvent _accelEvent, _speedBoostEvent, _regularSpeedEvent, _decelEvent;
 
     //bool to stop multiple coroutines from happening at the same time
     private static bool _isBoostEventHappening;
 
     // Declare enums and coroutines
-    private enum SpeedState { Regular, Boosted, Decel, Stop };
+    private enum SpeedState { Regular, Accel, Boosted, Decel, Stop };
     private SpeedState _currentSpeedState;
     private Coroutine _currentStateCoroutine;
 
@@ -57,7 +57,13 @@ public class BoostColliderManager : MonoBehaviour
 
     }
 
-
+    private IEnumerator Accel()
+    {
+        Debug.Log("Boost Collider triggered Accel Game Event");
+        _currentSpeedState = SpeedState.Accel;
+        _accelEvent.TriggerEvent();
+    }
+    
     private IEnumerator SpeedBoost()
     {
         Debug.Log("Boost Collider triggered SpeedBoost Game Event");
@@ -66,7 +72,7 @@ public class BoostColliderManager : MonoBehaviour
 
         yield return new WaitForSeconds(_speedBoostDuration);
         Debug.Log("After " + _speedBoostDuration + " seconds, Boost Collider ends SpeedBoost Game Event");
-       
+
         _currentStateCoroutine = StartCoroutine(Decel());
     }
 
@@ -115,6 +121,6 @@ public class BoostColliderManager : MonoBehaviour
             Debug.Log("Boost Collider: Boost Event already happening.");
         }
     }
-
+*/
 }
 

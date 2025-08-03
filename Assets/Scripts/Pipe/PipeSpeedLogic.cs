@@ -123,7 +123,7 @@ public class PipeSpeedLogic : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
-        while (PipeSpeed.Value < maxSpeed);
+        while (PipeSpeed.Value > maxSpeed);
 
         StateChangerBoostSpeed();
     }
@@ -204,7 +204,7 @@ public class PipeSpeedLogic : MonoBehaviour
 
         _pipeSpeedStateSO.PipeSpeedState = PipeSpeedSOFSM.RegularPipeSpeed;
 
-        _regularSpeedEvent.TriggerEvent();
+        //_regularSpeedEvent.TriggerEvent();
 
     }
 
