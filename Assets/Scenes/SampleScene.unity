@@ -1603,6 +1603,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3309400598631350791, guid: 3af106a194936274fbaf1cff886fc97e, type: 3}
+      propertyPath: onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartDecelSpawnState
+      objectReference: {fileID: 0}
     - target: {fileID: 3933662381976608666, guid: 3af106a194936274fbaf1cff886fc97e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1643,6 +1647,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8716641284241862975, guid: 3af106a194936274fbaf1cff886fc97e, type: 3}
+      propertyPath: PipeSO
+      value: 
+      objectReference: {fileID: 11400000, guid: f6646ccfa39902b4f9248aadd4581c3e, type: 2}
+    - target: {fileID: 8716641284241862975, guid: 3af106a194936274fbaf1cff886fc97e, type: 3}
+      propertyPath: PipeSpeed
+      value: 
+      objectReference: {fileID: 11400000, guid: 4d0ee0d50d1627040a4a9daee9bc4336, type: 2}
     - target: {fileID: 9050732984689367731, guid: 3af106a194936274fbaf1cff886fc97e, type: 3}
       propertyPath: m_Name
       value: Pipe Spawn Logic
