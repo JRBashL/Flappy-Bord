@@ -63,8 +63,8 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Method to be invoked by Jump Script on the first jump after starting the game.
-    /// Regular speed evens
+    /// Method to be invoked by GameEventlistener subscribed to First Jump GameEvent. 
+    /// JumpScript Script calls GameEvent on first jump after starting the game.
     /// </summary>
     public void FirstJump()
     {
@@ -75,14 +75,38 @@ public class GameManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Method to be invoked by GameEventListener subscribed to SpeedBoostTrigger GameEvent
+    /// BoostCollider calls GameEvent if BoostCollider OnTriggerEnter with Bord
+    /// </summary>
+    public void StartHaste()
+    {
+        StopCO(GameCoroutine);
+        GameCoroutine = StartCoroutine(Haste());
+    }
+
     public IEnumerator Normal()
     {
+        _gameState.GameState = GameStateSOFSM.Normal;
+
+
         _bordStateMachineSO.BordMainState = BordStateMachineSOFSM.RegularSpeedState;
         _pipeSpawnStatemachineSO.PipeSpawnState = PipeSpawnStateMachineSOFSM.RegularSpeedSpawn;
         _pipeSpeedStateSO.PipeSpeedState = PipeSpeedStateSOFSM.RegularPipeSpeed;
 
         yield return null;
     }
+
+    public IEnumerator Haste()
+    {
+        _gameState.GameState = GameStateSOFSM.Haste;
+
+        _bordStateMachineSO.BordMainState = BordStateMachineSOFSM.BoostSpeedState;
+        _pipeSpeedStateSO.PipeSpeedState = PipeSpeedStateSOFSM.AccelPipeSpeed;
+
+        yield return null;
+    }
+
     
     private void StopCO(Coroutine coroutine)
     {

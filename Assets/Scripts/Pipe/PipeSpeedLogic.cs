@@ -103,10 +103,12 @@ public class PipeSpeedLogic : MonoBehaviour
                     StateChangerAccelSpeed();
                     break;
                 case PipeSpeedSOFSM.BoostedPipeSpeed:
-                    StateChangerBoostSpeed();
+                    // Coroutine is started by Accel Coroutine
+                    //StateChangerBoostSpeed();
                     break;
                 case PipeSpeedSOFSM.DecelPipeSpeed:
-                    StateChangerDecel();
+                    // Coroutine is started by Boosted Coroutine
+                    //StateChangerDecel();
                     break;
                 case PipeSpeedSOFSM.StopPipeSpeed:
                     StateChangerStop();
@@ -133,7 +135,7 @@ public class PipeSpeedLogic : MonoBehaviour
         {
             _regPipeSpeed += _increaseSpeedPerSecond;
             PipeSpeed.Value = _regPipeSpeed;
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(1f);
             // Debug.Log("The PipeSpeed is now " + PipePrefabScript.PipeSpeed);
         }
         while (_pipeSpeedStateSO.PipeSpeedState == PipeSpeedSOFSM.RegularPipeSpeed);
