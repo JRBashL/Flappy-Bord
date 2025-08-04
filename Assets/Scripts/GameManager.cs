@@ -13,15 +13,7 @@ using System.Collections;
 public class GameManager : MonoBehaviour
 {
 
-    public enum GameFSM
-    {
-        Begin,
-        Regular,
-        SpeedBoost,
-        GameOver,
-    }
-
-    public GameFSM GameState;
+    [SerializeField] private GameStateMachineSO.GameFSM GameState;
     public Coroutine GameCoroutine;
 
     // ScriptableObjects FSMs
@@ -45,22 +37,26 @@ public class GameManager : MonoBehaviour
     // Public methods to be called by GameEventListeners via UnityEvent in inspector
 
     /// <summary>
-    /// Coroutine is for setting up the states of the Bord, Pipe Spawning, Pipe Speed, Jumping
+    /// Coroutine is for setting up the states of the Boost Collider, Bord, Pipe Spawning, Pipe Speed, Jumping, 
     /// </summary>
     /// <returns></returns>
     public IEnumerator StartGameCoroutine()
     {
         // Set states when starting the game
+
+        GameState = GameStateMachineSO.GameFSM.Begin;
+        
         _boostColliderStateSO.BoostColliderState = BoostColliderStateSOFSM.AliveState;
+
         _bordStateMachineSO.BordMainState = BordStateMachineSOFSM.BeginState;
+
         _jumpStateMachineSO.JumpState = JumpStateMachineSOFSM.NotJumping;
+
         _laneStateMachineSO.CurrentLaneState = LaneStateMachineSOCLFSM.Center;
         _laneStateMachineSO.LaneChangeState = LaneStateMachineSOLCFSM.OnLane;
+
         _pipeSpawnStatemachineSO.PipeSpawnState = PipeSpawnStateMachineSOFSM.NoSpawn;
         _pipeSpeedStateSO.PipeSpeedState = PipeSpeedStateSOFSM.ZeroPipeSpeed;
-
-
-
 
         yield return null;
     }
