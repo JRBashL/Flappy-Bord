@@ -37,6 +37,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameEvent _accelEvent, _decelEvent, _regularSpeedEvent, _speedBoostEvent;
 
 
+    void Start()
+    {
+        GameCoroutine = StartCoroutine(StartGameCoroutine());
+    }
+
     // Public methods to be called by GameEventListeners via UnityEvent in inspector
 
     /// <summary>
@@ -61,15 +66,16 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Method to be invoked by Jump Script on the first jump after starting the game
+    /// Method to be invoked by Jump Script on the first jump after starting the game.
+    /// Regular speed evens
     /// </summary>
     public void FirstJump()
     {
-        _bordStateMachineSO.BordMainState = BordStateMachineSOFSM.BeginState;
+        _regularSpeedEvent.TriggerEvent();
 
-        //_bordStateSO.BordMainState = BordStateSOFSM.RegularSpeedState;
-       
     }
+    
+    
 
 
 
@@ -77,53 +83,53 @@ public class GameManager : MonoBehaviour
 
 
 
-    // Called when speed boost event triggers
-    public void OnSpeedBoostTriggered()
-    {
-        Debug.Log("GameManager: Speed Boost triggered.");
+            // Called when speed boost event triggers
+            public void OnSpeedBoostTriggered()
+            {
+                Debug.Log("GameManager: Speed Boost triggered.");
 
-        // Tell PipeSpeedLogic to go into accel speed state
-        pipeSpeedLogic.StateChangerAccelSpeed();
+                // Tell PipeSpeedLogic to go into accel speed state
+                pipeSpeedLogic.StateChangerAccelSpeed();
 
-        // You could also trigger spawn logic changes or other stuff here
-    }
+                // You could also trigger spawn logic changes or other stuff here
+            }
 
-    // Called when speed decel event triggers
-    public void OnSpeedDecelTriggered()
-    {
-        Debug.Log("GameManager: Speed Decel triggered.");
+            // Called when speed decel event triggers
+            public void OnSpeedDecelTriggered()
+            {
+                Debug.Log("GameManager: Speed Decel triggered.");
 
-        pipeSpeedLogic.StateChangerDecel();
+                pipeSpeedLogic.StateChangerDecel();
 
-        // Maybe slow down pipe spawning or whatever
-    }
+                // Maybe slow down pipe spawning or whatever
+            }
 
-    // Called when regular speed resumes
-    public void OnRegularSpeedTriggered()
-    {
-        Debug.Log("GameManager: Regular speed resumed.");
+            // Called when regular speed resumes
+            public void OnRegularSpeedTriggered()
+            {
+                Debug.Log("GameManager: Regular speed resumed.");
 
-        pipeSpeedLogic.StateChangerRegularSpeed();
-    }
+                pipeSpeedLogic.StateChangerRegularSpeed();
+            }
 
-    // Called when boost collider detects collision
-    public void OnBoostColliderTriggered()
-    {
-        Debug.Log("GameManager: Boost Collider triggered.");
+            // Called when boost collider detects collision
+            public void OnBoostColliderTriggered()
+            {
+                Debug.Log("GameManager: Boost Collider triggered.");
 
-        // Could trigger speed boost or any other game reaction here
-        pipeSpeedLogic.StateChangerAccelSpeed();
-    }
+                // Could trigger speed boost or any other game reaction here
+                pipeSpeedLogic.StateChangerAccelSpeed();
+            }
 
-    // Add more public handlers for other events as needed
+            // Add more public handlers for other events as needed
 
-    // Optional initialization or state management if needed
-    void Start()
-    {
-        // Could initialize default states here if you want
-        if (pipeSpeedLogic != null)
-            pipeSpeedLogic.StateChangerRegularSpeed();
-    }
+            // Optional initialization or state management if needed
+            void Start()
+            {
+                // Could initialize default states here if you want
+                if (pipeSpeedLogic != null)
+                    pipeSpeedLogic.StateChangerRegularSpeed();
+            }
 
-    */
+            */
 }
