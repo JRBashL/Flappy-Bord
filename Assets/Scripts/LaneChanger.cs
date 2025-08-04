@@ -69,7 +69,7 @@ public class LaneChanger : MonoBehaviour
 
     private void OnMoveLeft()
     {
-        if (_bordStateMachineSO.BordMainState == BordStateSOFSM.DeadState || _bordStateMachineSO.BordMainState == BordStateSOFSM.DeadState)
+        if (_bordStateMachineSO.BordMainState == BordStateSOFSM.DeadState || _bordStateMachineSO.BordMainState == BordStateSOFSM.BeginState)
         {
             // Does nothing in the states above.
         }
@@ -109,7 +109,7 @@ public class LaneChanger : MonoBehaviour
 
     private void OnMoveRight()
     {
-        if (_bordStateMachineSO.BordMainState == BordStateSOFSM.DeadState || _bordStateMachineSO.BordMainState == BordStateSOFSM.DeadState)
+        if (_bordStateMachineSO.BordMainState == BordStateSOFSM.DeadState || _bordStateMachineSO.BordMainState == BordStateSOFSM.BeginState)
         {
             // Does nothing in the states above.
         }
