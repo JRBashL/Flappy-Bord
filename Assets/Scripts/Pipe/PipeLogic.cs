@@ -89,6 +89,15 @@ public class PipeSpawnLogic : MonoBehaviour
                 // No action for this state
                 break;
 
+            case PipeSpawnSOFSM.AccelPipeSpawn:
+                // create a lerp to dynamically change the timer according to the PipeSpeed. Spawn timer is the same as
+                // speedboost timer if the speed is exactly the speedboost, and spawn timer is the same as the regular
+                // timer if the speed is exactly the regularspeed. Linear interpolation in between the two values.
+                float maxspeedAccel = PipeSO.RegularPipeSpeed * PipeSO.BoostPipeSpeedMultiplier;
+                float timercounterAccel = Mathf.InverseLerp(PipeSO.RegularPipeSpeed, maxspeedAccel, PipeSpeed.Value);
+                _spawnTimerToUse = Mathf.Lerp(_pipeSpawnTimerRegularSpeed, _pipeSpawnTimerSpeedBoost, timercounterAccel);
+                break;
+
             case PipeSpawnSOFSM.RegularSpeedSpawn:
 
                 _spawnTimerToUse = _pipeSpawnTimerRegularSpeed;
@@ -104,9 +113,9 @@ public class PipeSpawnLogic : MonoBehaviour
                 // create a lerp to dynamically change the timer according to the PipeSpeed. Spawn timer is the same as
                 // speedboost timer if the speed is exactly the speedboost, and spawn timer is the same as the regular
                 // timer if the speed is exactly the regularspeed. Linear interpolation in between the two values.
-                float maxspeed = PipeSO.RegularPipeSpeed * PipeSO.BoostPipeSpeedMultiplier;
-                float timercounter = Mathf.InverseLerp(maxspeed, PipeSO.RegularPipeSpeed, PipeSpeed.Value);
-                _spawnTimerToUse = Mathf.Lerp(_pipeSpawnTimerSpeedBoost, _pipeSpawnTimerRegularSpeed, timercounter);
+                float maxspeedDecel = PipeSO.RegularPipeSpeed * PipeSO.BoostPipeSpeedMultiplier;
+                float timercounterDecel = Mathf.InverseLerp(maxspeedDecel, PipeSO.RegularPipeSpeed, PipeSpeed.Value);
+                _spawnTimerToUse = Mathf.Lerp(_pipeSpawnTimerSpeedBoost, _pipeSpawnTimerRegularSpeed, timercounterDecel);
                // Debug.LogWarning("timercounter is " + timercounter);
                // Debug.LogWarning("_spawnTimerToUse is " + _spawnTimerToUse);
                 //Debug.LogWarning("_clock is " + _clock);

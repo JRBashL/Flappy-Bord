@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _regularPipeSpeed: -15
   _boostPipeSpeedMultiplier: 3
-  _accelDuration: 1
+  _accelDuration: 0.5
   _boostDuration: 5
   _decelDuration: 2
   _increasingSpeedPerSec: -0.1

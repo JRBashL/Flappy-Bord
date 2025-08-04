@@ -103,6 +103,7 @@ public class GameManager : MonoBehaviour
 
         _bordStateMachineSO.BordMainState = BordStateMachineSOFSM.BoostSpeedState;
         _pipeSpeedStateSO.PipeSpeedState = PipeSpeedStateSOFSM.AccelPipeSpeed;
+        _pipeSpawnStatemachineSO.PipeSpawnState = PipeSpawnStateMachineSOFSM.AccelPipeSpawn;
 
         yield return null;
     }
