@@ -33,8 +33,7 @@ public class PipeSpeedStateSO : ScriptableObject
             else
             {
                 _pipeSpeedState = value;
-            }
-
+            }                
         }
 
     }

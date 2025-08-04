@@ -39,6 +39,10 @@ public class PipeSpeedLogic : MonoBehaviour
     [SerializeField]
     private GameEvent _accelEvent, _speedBoostEvent, _regularSpeedEvent, _decelEvent;
 
+    // Declare boolean for watching state change in the update function through polling
+    private bool _isStateChanged;
+    private PipeSpeedSOFSM _previousState, _currentState;
+
     void Awake()
     {
 
@@ -76,14 +80,43 @@ public class PipeSpeedLogic : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
-
+    {   
+        // Set to zero at the beginning for polling
+        _previousState = PipeSpeedSOFSM.ZeroPipeSpeed;
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        //Poll the FSM
+        _currentState = _pipeSpeedStateSO.PipeSpeedState;
 
+        if (_currentState != _previousState)
+        {
+            
+            switch (_pipeSpeedStateSO.PipeSpeedState)
+            {
+                case PipeSpeedSOFSM.RegularPipeSpeed:
+                    StateChangerRegularSpeed();
+                    break;
+                case PipeSpeedSOFSM.AccelPipeSpeed:           
+                    StateChangerAccelSpeed();
+                    break;
+                case PipeSpeedSOFSM.BoostedPipeSpeed:
+                    StateChangerBoostSpeed();
+                    break;
+                case PipeSpeedSOFSM.DecelPipeSpeed:
+                    StateChangerDecel();
+                    break;
+                case PipeSpeedSOFSM.StopPipeSpeed:
+                    StateChangerStop();
+                    break;
+                case PipeSpeedSOFSM.ZeroPipeSpeed:
+                    StateChangerZero();
+                    break;
+            }
+        }
+        _previousState = _pipeSpeedStateSO.PipeSpeedState;
     }
 
 
