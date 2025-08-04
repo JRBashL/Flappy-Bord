@@ -39,11 +39,6 @@ public class PipeSpeedStateSO : ScriptableObject
 
     }
 
-    void OnEnable()
-    {
-        PipeSpeedState = PipeSpeedFSM.ZeroPipeSpeed;
-    }
-
     // Methods for Events
     public void StartRegularSpeed()
     {

@@ -31,11 +31,4 @@ public class JumpStateMachineSO : ScriptableObject
             }
         }
     }
-
-    // Set default starting value.
-    void OnEnable()
-    {
-        _jumpState = JumpFSM.NotJumping;
-    }
-
 }
