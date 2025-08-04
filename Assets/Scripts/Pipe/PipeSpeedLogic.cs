@@ -37,7 +37,7 @@ public class PipeSpeedLogic : MonoBehaviour
 
     // Declare GameEvents
     [SerializeField]
-    private GameEvent _accelEvent, _speedBoostEvent, _regularSpeedEvent, _decelEvent;
+    private GameEvent _accelEvent, _speedBoostEvent, _decelEvent, _hasteFinished;
 
     // Declare boolean for watching state change in the update function through polling
     private bool _isStateChanged;
@@ -199,8 +199,7 @@ public class PipeSpeedLogic : MonoBehaviour
             yield return null;
         }
 
-        StateChangerRegularSpeed();
-        
+        _hasteFinished.TriggerEvent();
     }
 
     private IEnumerator StateStopSpeed()

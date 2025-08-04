@@ -85,6 +85,12 @@ public class GameManager : MonoBehaviour
         GameCoroutine = StartCoroutine(Haste());
     }
 
+    public void HasteFinished()
+    {
+        StopCO(GameCoroutine);
+        GameCoroutine = StartCoroutine(Normal());
+    }
+
     public IEnumerator Normal()
     {
         _gameState.GameState = GameStateSOFSM.Normal;
